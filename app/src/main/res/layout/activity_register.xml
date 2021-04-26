@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="-75dp">
+        android:layout_marginTop="-45dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,6 +110,21 @@
                             android:id="@+id/editInputPassword"
                             style="@style/modifiedEditText"
                             android:hint="@string/login_password_hint"
+                            android:inputType="textPassword"
+                            android:maxLines="1" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputRePassword"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/editInputReWritePassword"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/login_Repassword_hint"
                             android:inputType="textPassword"
                             android:maxLines="1" />
 
@@ -216,5 +231,6 @@
         style="@style/progressBarStyle"
 
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:visibility="gone" />
 </RelativeLayout>

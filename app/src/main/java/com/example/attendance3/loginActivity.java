@@ -16,7 +16,7 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        int sdafa;
+
         changeStatusBarColor();
     }
     public void onloginclick(View view) {

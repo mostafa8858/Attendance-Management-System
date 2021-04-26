@@ -150,10 +150,12 @@
         android:layout_marginBottom="30dp"
 android:onClick="onloginclick"
         android:src="@drawable/ic_add_img"/>
+
     <ProgressBar
         android:id="@+id/progressBar_login"
- style="@style/progressBarStyle"
+        style="@style/progressBarStyle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
 </RelativeLayout>
