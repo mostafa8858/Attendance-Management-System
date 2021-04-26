@@ -53,6 +53,7 @@
         <item name="android:background">@drawable/process_bar_background</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_centerVertical">true</item>
+
     </style>
 
 </resources>
