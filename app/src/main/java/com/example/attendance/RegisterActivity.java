@@ -72,10 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 insertNewUser();
-
             }
         });
-
     }
     private void insertNewUser() {
 
@@ -138,12 +136,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                       firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                         UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(name).setPhotoUri(null).build();
+                                .setDisplayName(name).setPhotoUri(null)
+                                .build();
                         firebaseUser.updateProfile(userProfileChangeRequest);
 
 
                         // دي فيها شك
-
 
                         PhoneAuthCredential phoneAuthCredential = PhoneAuthCredential.zzb("02", mobile);
                         firebaseUser.updatePhoneNumber(phoneAuthCredential);
@@ -165,7 +163,6 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
-
     public void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

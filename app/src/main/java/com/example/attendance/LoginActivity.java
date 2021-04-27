@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+int sajdlasjd;
         setContentView(R.layout.activity_login);
 
         changeStatusBarColor();
