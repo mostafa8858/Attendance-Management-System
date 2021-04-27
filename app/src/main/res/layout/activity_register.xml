@@ -64,7 +64,7 @@
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
-                            android:id="@+id/editInputName"
+                            android:id="@+id/editInputNameRegister"
                             style="@style/modifiedEditText"
                             android:hint="Name"
                             android:inputType="textPersonName"
@@ -78,7 +78,7 @@
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
-                            android:id="@+id/editInputEmail"
+                            android:id="@+id/editInputEmailRegister"
                             style="@style/modifiedEditText"
                             android:hint="@string/login_email_hint"
                             android:inputType="textEmailAddress"
@@ -93,7 +93,7 @@
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
-                            android:id="@+id/editInputMobile"
+                            android:id="@+id/editInputMobileRegister"
                             style="@style/modifiedEditText"
                             android:hint="Mobile Number"
                             android:inputType="phone"
@@ -107,7 +107,7 @@
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
-                            android:id="@+id/editInputPassword"
+                            android:id="@+id/editInputPasswordRegister"
                             style="@style/modifiedEditText"
                             android:hint="@string/login_password_hint"
                             android:inputType="textPassword"
@@ -122,7 +122,7 @@
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
-                            android:id="@+id/editInputReWritePassword"
+                            android:id="@+id/editInputReWritePasswordRegister"
                             style="@style/modifiedEditText"
                             android:hint="@string/login_Repassword_hint"
                             android:inputType="textPassword"
@@ -131,14 +131,14 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
-                        android:id="@+id/RegesterButton"
+                        android:id="@+id/register_Button"
                         style="@style/loginButton"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:text="REGISTER" />
 
                     <TextView
-                        android:id="@+id/tv_login_in_register"
+                        android:id="@+id/to_tv_login_in_register"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
 
@@ -191,11 +191,13 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/facebook_image_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_facebook" />
 
                 <ImageView
+                    android:id="@+id/google_image_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -217,7 +219,7 @@
     android:background="@drawable/ic_side_bg2"/>
 
     <ImageView
-        android:id="@+id/back_image_in_register"
+        android:id="@+id/to_back_image_in_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
