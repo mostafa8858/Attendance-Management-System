@@ -31,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button registerButton;
     private ProgressBar progressBar;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +56,16 @@ public class RegisterActivity extends AppCompatActivity {
         tologintext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), loginActivity.class));
+                startActivity(new Intent(getBaseContext(), LoginActivity.class));
+                finish();
             }
         });
         tologinImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), loginActivity.class));
+                startActivity(new Intent(getBaseContext(), LoginActivity.class));
                 overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
+                finish();
             }
         });
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -73,10 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
-
     private void insertNewUser() {
 
         String name, email, password, mobile, reWritepassword;
@@ -136,19 +136,20 @@ public class RegisterActivity extends AppCompatActivity {
 
                         Toast.makeText(getBaseContext(), "Added Account", Toast.LENGTH_LONG).show();
 
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                      firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                         UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
                                 .setDisplayName(name).setPhotoUri(null).build();
-                        user.updateProfile(userProfileChangeRequest);
+                        firebaseUser.updateProfile(userProfileChangeRequest);
+
 
                         // دي فيها شك
 
 
                         PhoneAuthCredential phoneAuthCredential = PhoneAuthCredential.zzb("02", mobile);
-                        user.updatePhoneNumber(phoneAuthCredential);
+                        firebaseUser.updatePhoneNumber(phoneAuthCredential);
 
                         progressBar.setVisibility(View.GONE);
-                        startActivity(new Intent(getBaseContext(), loginActivity.class));
+                        startActivity(new Intent(getBaseContext(), LoginActivity.class));
                         overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
                         finish();
                     } else {

@@ -13,6 +13,6 @@
     <color name="primaryTextColor">#1E88E5</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="out_line">#797979</color>
+    <color name="out_line">#B3B1B1</color>
     <color name="main_bk_color">#F8F8F8</color>
 </resources>

@@ -23,7 +23,7 @@
             android:name="com.example.attendance.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.example.attendance.loginActivity"
+            android:name="com.example.attendance.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
 

@@ -6,4 +6,6 @@
 
     <string name="user_name">Student</string>
     <string name="welcome_back_in_main">Welcome Back</string>
+    <string name="Log_out">Log Out</string>
+    <string name="kind_of_user">You Are Admin</string>
 </resources>

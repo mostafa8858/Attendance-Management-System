@@ -21,7 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class loginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private ImageView registerImage;
     private TextView registertext;
     private EditText edEmail, edPassword;
@@ -55,12 +55,14 @@ public class loginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), RegisterActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+                finish();
             }
         });
         registertext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), RegisterActivity.class));
+            finish();
             }
         });
 
