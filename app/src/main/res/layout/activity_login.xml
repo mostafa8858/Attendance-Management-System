@@ -84,6 +84,7 @@
                 android:text="LOGIN" />
 
             <TextView
+                android:id="@+id/tv_register_in_login"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:text="New User? Register Now"
@@ -141,15 +142,16 @@
     android:layout_alignParentRight="true"
     android:layout_marginTop="20dp"
     android:background="@drawable/ic_side_bg"/>
+
     <ImageView
+        android:id="@+id/plus_image_in_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="11dp"
         android:layout_marginBottom="30dp"
-android:onClick="onloginclick"
-        android:src="@drawable/ic_add_img"/>
+        android:src="@drawable/ic_add_img" />
 
     <ProgressBar
         android:id="@+id/progressBar_login"

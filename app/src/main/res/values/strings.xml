@@ -3,4 +3,7 @@
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="login_Repassword_hint">Re password</string>
+
+    <string name="user_name">Student</string>
+    <string name="welcome_back_in_main">Welcome Back</string>
 </resources>

@@ -138,9 +138,10 @@
                         android:text="REGISTER" />
 
                     <TextView
+                        android:id="@+id/tv_login_in_register"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
-                        android:onClick="onloginclick"
+
                         android:text="Already have an account?"
                         android:textAlignment="center"
                         android:textColor="@color/themeColor"
@@ -214,7 +215,9 @@
     android:layout_alignParentRight="true"
     android:layout_marginTop="20dp"
     android:background="@drawable/ic_side_bg2"/>
+
     <ImageView
+        android:id="@+id/back_image_in_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -222,15 +225,13 @@
         android:layout_marginRight="11dp"
         android:layout_marginBottom="30dp"
         android:adjustViewBounds="false"
-        android:onClick="onloginclick"
-        android:src="@drawable/ic_back_img"/>
+        android:src="@drawable/ic_back_img" />
 
 
     <ProgressBar
         android:id="@+id/progressBar_register"
         style="@style/progressBarStyle"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:visibility="gone" />
+        android:visibility="gone" />
 </RelativeLayout>
