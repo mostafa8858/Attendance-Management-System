@@ -2,11 +2,14 @@ package com.example.attendance;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +36,7 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
+        changeStatusBarColor();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         toolbar = findViewById(R.id.tool_bar_details);
@@ -55,11 +58,12 @@ public class DetailsActivity extends AppCompatActivity {
         if (firebaseUser.getPhotoUrl() != null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
         }
-        userImage.setOnClickListener(new View.OnClickListener() {
+        userImage.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onLongClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, IMAGE_REQUEST_CODE);
+                return false;
             }
         });
 
@@ -77,28 +81,28 @@ public class DetailsActivity extends AppCompatActivity {
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//
-//        switch (item.getItemId()) {
-//            case R.id.save_data_menu:
-//                UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-//                        .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
-//
-//                firebaseUser.updateProfile(userProfileChangeRequest);
-//                firebaseUser.updateEmail(edEmail.getText().toString());
-//                firebaseUser.updatePassword(edPassword.getText().toString());
-//                disableFields();
-//            case R.id.edit_data_menu:
-//                menu.findItem(R.id.edit_data_menu).setVisible(false);
-//                menu.findItem(R.id.save_data_menu).setVisible(true);
-//                enableFields();
-//                return true;
-//
-//        }
-//        return false;
-//
-//    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.save_data_menu:
+                UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
+
+                firebaseUser.updateProfile(userProfileChangeRequest);
+                firebaseUser.updateEmail(edEmail.getText().toString());
+                firebaseUser.updatePassword(edPassword.getText().toString());
+                disableFields();
+            case R.id.edit_data_menu:
+                menu.findItem(R.id.edit_data_menu).setVisible(false);
+                menu.findItem(R.id.save_data_menu).setVisible(true);
+                enableFields();
+                return true;
+
+        }
+        return false;
+
+    }
 
     void disableFields() {
         edName.setActivated(false);
@@ -126,6 +130,15 @@ public class DetailsActivity extends AppCompatActivity {
             userImageUri = data.getData();
             userImage.setImageURI(userImageUri);
 
+        }
+    }
+
+
+    public void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
         }
     }
 }
