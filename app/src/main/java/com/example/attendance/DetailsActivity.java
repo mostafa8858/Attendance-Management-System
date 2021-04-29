@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class DetailsActivity extends AppCompatActivity {
     private static final int IMAGE_REQUEST_CODE = 15;
@@ -25,6 +26,7 @@ public class DetailsActivity extends AppCompatActivity {
     private EditText edName, edEmail, edPassword, edPhone;
     private ImageView userImage;
     private Uri userImageUri;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,18 +65,34 @@ public class DetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-      getMenuInflater().inflate(R.menu.menu_in_details,menu);
-        MenuItem edit=menu.findItem(R.id.edit_data_menu);
-        MenuItem save=menu.findItem(R.id.save_data_menu);
+        this.menu = menu;
+        getMenuInflater().inflate(R.menu.menu_in_details, menu);
+        MenuItem edit = menu.findItem(R.id.edit_data_menu);
+        MenuItem save = menu.findItem(R.id.save_data_menu);
         edit.setVisible(true);
-        save.setVisible(true);
-
+        save.setVisible(false);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        return true;
+
+        switch (item.getItemId()) {
+            case R.id.save_data_menu:
+                UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
+
+                firebaseUser.updateProfile(userProfileChangeRequest);
+                firebaseUser.updateEmail(edEmail.getText().toString());
+
+            case R.id.edit_data_menu:
+                menu.findItem(R.id.edit_data_menu).setVisible(false);
+                menu.findItem(R.id.save_data_menu).setVisible(true);
+                return true;
+
+        }
+        return false;
+
     }
 
     void disableFields() {
