@@ -24,11 +24,9 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-<<<<<<< HEAD
 
 
-=======
->>>>>>> bf3a3f9e16daa2e620a5ae311a695520776496f0
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
