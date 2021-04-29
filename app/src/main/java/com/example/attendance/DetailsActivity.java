@@ -63,10 +63,12 @@ public class DetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_in_details,menu);
+      getMenuInflater().inflate(R.menu.menu_in_details,menu);
         MenuItem edit=menu.findItem(R.id.edit_data_menu);
         MenuItem save=menu.findItem(R.id.save_data_menu);
         edit.setVisible(true);
+        save.setVisible(true);
+
         return true;
     }
 

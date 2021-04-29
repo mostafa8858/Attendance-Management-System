@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    style="@style/AppBaseTheme"
     tools:context=".DetailsActivity">
 
 
@@ -36,7 +37,7 @@
                 android:id="@+id/tool_bar_details"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                android:fitsSystemWindows="true" />
+                />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
