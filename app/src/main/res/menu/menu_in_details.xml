@@ -4,7 +4,8 @@
     <item
         android:id="@+id/edit_data_menu"
         android:title="@string/Edit"
-        app:showAsAction="always" android:orderInCategory="100"
+        app:showAsAction="always"
+        android:orderInCategory="100"
         android:icon="@drawable/ic_edit"
         />
     <item
