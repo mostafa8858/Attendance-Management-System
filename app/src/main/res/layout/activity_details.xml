@@ -46,7 +46,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fitsSystemWindows="true"
 
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -59,67 +59,56 @@
             android:paddingTop="20dp"
             android:paddingEnd="20dp">
 
-            <com.google.android.material.textfield.TextInputLayout
+
+            <EditText
+                android:id="@+id/edit_text_name_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_model_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:drawableEnd="@drawable/ic_user_name"
-                    android:text="@string/user_name"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/ic_user_name"
+                android:enabled="false"
+                android:paddingTop="30dp"
+                android:text="@string/user_name" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:id="@+id/edit_text_email_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_color_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:drawableEnd="@drawable/ic_email"
-                  android:text="@string/login_email_hint" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/ic_email"
+                android:enabled="false"
+                android:paddingTop="30dp"
+                android:text="@string/login_email_hint" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:id="@+id/edit_text_number_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp">
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/ic_phone_numbers_call"
+                android:enabled="false"
+                android:paddingTop="30dp"
+                android:text="@string/phone_number" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_dpl_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:drawableEnd="@drawable/ic_password"
-                 android:text="@string/login_password_hint" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:id="@+id/edit_text_password_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp">
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/ic_password"
+                android:enabled="false"
+                android:inputType="textPassword"
+                android:paddingTop="30dp"
+                android:text="@string/login_password_hint" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_discription_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:drawableEnd="@drawable/ic_phone_numbers_call"
-                    android:text="@string/phone_number" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
 
 
         </LinearLayout>

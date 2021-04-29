@@ -9,4 +9,6 @@
     <string name="Log_out">Log Out</string>
     <string name="kind_of_user">You Are Admin</string>
     <string name="phone_number">Phone Number</string>
+    <string name="Edit">Edit</string>
+    <string name="save">Save</string>
 </resources>
