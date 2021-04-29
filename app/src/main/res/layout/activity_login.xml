@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
     android:layout_gravity="center"
     android:background="@color/login_bk_color"
     android:focusableInTouchMode="true"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context=".LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -116,17 +115,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
+
+               <com.facebook.login.widget.LoginButton
+                   android:id="@+id/login_button"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_horizontal"
+                   android:layout_marginTop="30dp"
+                   android:layout_marginBottom="30dp"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_facebook" />
-
-                <ImageView
+                    android:id="@+id/imageViewGoogle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/ic_google" />
 
 
@@ -135,13 +140,14 @@
         </LinearLayout>
 
     </ScrollView>
-<View
-    android:layout_width="11dp"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentRight="true"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/ic_side_bg"/>
+
+    <View
+        android:layout_width="11dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_side_bg" />
 
     <ImageView
         android:id="@+id/plus_image_in_login"
