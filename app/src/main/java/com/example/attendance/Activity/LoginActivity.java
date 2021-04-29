@@ -1,12 +1,13 @@
-package com.example.attendance;
+package com.example.attendance.Activity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.attendance.R;
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
+
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -24,8 +25,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,9 +34,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
     private LoginButton login_button;
@@ -146,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    //When initializing your Activity, check to see if the user is currently signed in  دي بتشوف المستخدم مسجل ولا لا
+    //When initializing your com.example.attendance.Activity, check to see if the user is currently signed in  دي بتشوف المستخدم مسجل ولا لا
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);

@@ -1,4 +1,4 @@
-package com.example.attendance;
+package com.example.attendance.Activity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.attendance.Activity.LoginActivity;
+import com.example.attendance.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,15 +26,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
-    private ImageView tologinImage, facebookRegisterImage, googleRegisterImage;
+    private ImageView tologinImage;
     private TextView tologintext;
-    private EditText edEmail, edMobile, edName, edPassword, edReWritePassword;
+    private EditText edEmail, edMobile, edFirstName, edLastName, edPassword, edReWritePassword;
     private Button registerButton;
     private ProgressBar progressBar;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+    private DatabaseReference firebaseDatabaseRefrence;
+
+    private RadioButton rbAdmin, rbStudent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +48,20 @@ public class RegisterActivity extends AppCompatActivity {
         changeStatusBarColor();
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabaseRefrence = FirebaseDatabase.getInstance().getReference();
+
 
         tologinImage = findViewById(R.id.to_back_image_in_register);
         tologintext = findViewById(R.id.to_tv_login_in_register);
         edEmail = findViewById(R.id.editInputEmailRegister);
         edMobile = findViewById(R.id.editInputMobileRegister);
-        edName = findViewById(R.id.editInputNameRegister);
+        edFirstName = findViewById(R.id.editInputFirstNameRegister);
+        edLastName = findViewById(R.id.editInputLastNameRegister);
         edPassword = findViewById(R.id.editInputPasswordRegister);
         edReWritePassword = findViewById(R.id.editInputReWritePasswordRegister);
         registerButton = findViewById(R.id.register_Button);
-        facebookRegisterImage = findViewById(R.id.facebook_image_register);
-        googleRegisterImage = findViewById(R.id.google_image_register);
+        rbAdmin = findViewById(R.id.radioButtonAdmin);
+        rbStudent = findViewById(R.id.radioButtonStudent);
         progressBar = findViewById(R.id.progressBar_register);
 
         tologintext.setOnClickListener(new View.OnClickListener() {
@@ -75,10 +86,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
     private void insertNewUser() {
 
         String name, email, password, mobile, reWritepassword;
-        name = edName.getText().toString();
+        name = edFirstName.getText().toString();
         email = edEmail.getText().toString();
         password = edPassword.getText().toString();
         mobile = edMobile.getText().toString();
@@ -86,11 +98,11 @@ public class RegisterActivity extends AppCompatActivity {
 
         // name check
         if (name.isEmpty()) {
-            edName.setError("Enter the Name");
-            edName.requestFocus();
+            edFirstName.setError("Enter the Name");
+            edFirstName.requestFocus();
         } else if (name.length() < 3) {
-            edName.setError("the name length less than 3");
-            edName.requestFocus();
+            edFirstName.setError("the name length less than 3");
+            edFirstName.requestFocus();
         }
         //email check
         else if (email.isEmpty()) {
@@ -134,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         Toast.makeText(getBaseContext(), "Added Account", Toast.LENGTH_LONG).show();
 
-                      firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                         UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
                                 .setDisplayName(name).setPhotoUri(null)
                                 .build();
@@ -163,6 +175,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+
     public void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

@@ -1,4 +1,4 @@
-package com.example.attendance;
+package com.example.attendance.Activity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.attendance.Activity.DetailsActivity;
+import com.example.attendance.Activity.LoginActivity;
+import com.example.attendance.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -45,7 +48,7 @@ userImage.setImageURI(firebaseUser.getPhotoUrl());
 userImage.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        startActivity(new Intent(getBaseContext(),DetailsActivity.class));
+        startActivity(new Intent(getBaseContext(), DetailsActivity.class));
         overridePendingTransition(R.anim.slide_up,R.anim.stay);
     }
 });

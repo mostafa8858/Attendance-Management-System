@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
+    tools:context=".Activity.RegisterActivity"
     android:layout_gravity="center"
     android:background="#1E88E5"
     android:focusableInTouchMode="true"
@@ -58,19 +58,46 @@
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
+
+
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputName"
+                        android:id="@+id/textInputFirstName"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
-                            android:id="@+id/editInputNameRegister"
+                            android:id="@+id/editInputFirstNameRegister"
                             style="@style/modifiedEditText"
-                            android:hint="Name"
+                            android:hint="@string/firstNameHint"
+                            android:inputType="textPersonName"
+                            android:ems="8"
+                            android:maxLines="1" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLastName"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/editInputLastNameRegister"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/LastNameHint"
                             android:inputType="textPersonName"
                             android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputEmail"
@@ -126,9 +153,34 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/login_Repassword_hint"
                             android:inputType="textPassword"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:layout_marginBottom="20dp"
+                            />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <RadioGroup
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+
+                            android:id="@+id/radioButtonAdmin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/admin" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonStudent"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Student" />
+                    </RadioGroup>
 
                     <Button
                         android:id="@+id/register_Button"
@@ -152,58 +204,6 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:weightSum="12">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/whiteTextColor" />
-
-                <TextView
-                    style="@style/viewParent.headerText.NoMode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Use other Methods"
-                    android:textAlignment="center"
-                    android:textColor="@color/whiteTextColor"
-                    android:textSize="12sp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/whiteTextColor" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="30dp"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/facebook_image_register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_facebook" />
-
-                <ImageView
-                    android:id="@+id/google_image_register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_google" />
-
-            </LinearLayout>
 
 
         </LinearLayout>
