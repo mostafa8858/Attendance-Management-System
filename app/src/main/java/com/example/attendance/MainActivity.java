@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         tvStudentName.setText(firebaseUser.getDisplayName());
-
+userImage.setImageURI(firebaseUser.getPhotoUrl());
 userImage.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {

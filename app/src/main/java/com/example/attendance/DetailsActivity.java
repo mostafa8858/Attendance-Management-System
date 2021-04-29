@@ -12,7 +12,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,7 +53,6 @@ public class DetailsActivity extends AppCompatActivity {
         edPhone.setText(firebaseUser.getPhoneNumber());
 
 
-
         if (firebaseUser.getPhotoUrl() != null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
         }
@@ -77,7 +75,9 @@ public class DetailsActivity extends AppCompatActivity {
         MenuItem edit = menu.findItem(R.id.edit_data_menu);
         MenuItem save = menu.findItem(R.id.save_data_menu);
         edit.setVisible(true);
-        save.setVisible(true);
+        save.setVisible(false);
+
+
         return true;
     }
 
@@ -85,19 +85,24 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.save_data_menu:
+            case R.id.save_data_menu: {
                 UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
                         .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
 
                 firebaseUser.updateProfile(userProfileChangeRequest);
                 firebaseUser.updateEmail(edEmail.getText().toString());
                 firebaseUser.updatePassword(edPassword.getText().toString());
-                disableFields();
-            case R.id.edit_data_menu:
+                startActivity(new Intent(getBaseContext(), MainActivity.class));
+disableFields();
+                return true;
+            }
+            case R.id.edit_data_menu: {
+                enableFields();
                 menu.findItem(R.id.edit_data_menu).setVisible(false);
                 menu.findItem(R.id.save_data_menu).setVisible(true);
-                enableFields();
+
                 return true;
+            }
 
         }
         return false;
@@ -105,20 +110,20 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     void disableFields() {
-        edName.setActivated(false);
-        edPhone.setActivated(false);
-        edPassword.setActivated(false);
-        edEmail.setActivated(false);
+        edName.setEnabled(false);
+        edPhone.setEnabled(false);
+        edPassword.setEnabled(false);
+        edEmail.setEnabled(false);
 
 
     }
 
     void enableFields() {
 
-        edName.setActivated(true);
-        edPhone.setActivated(true);
-        edPassword.setActivated(true);
-        edEmail.setActivated(true);
+        edName.setEnabled(true);
+        edPhone.setEnabled(true);
+        edPassword.setEnabled(true);
+        edEmail.setEnabled(true);
 
     }
 
