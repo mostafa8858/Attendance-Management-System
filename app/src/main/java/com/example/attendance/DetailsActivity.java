@@ -1,5 +1,6 @@
 package com.example.attendance;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -12,9 +13,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -40,6 +43,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.tool_bar_details);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         edName = findViewById(R.id.edit_text_name_details);
         edEmail = findViewById(R.id.edit_text_email_details);
         edPassword = findViewById(R.id.edit_text_password_details);
@@ -86,13 +90,33 @@ public class DetailsActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.save_data_menu: {
-                UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
 
-                firebaseUser.updateProfile(userProfileChangeRequest);
-                firebaseUser.updateEmail(edEmail.getText().toString());
-                firebaseUser.updatePassword(edPassword.getText().toString());
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
+                AlertDialog.Builder builder=new AlertDialog.Builder(this);
+builder.setTitle("Alert").setIcon(R.drawable.ic_alert).setMessage("Are You Sure Update Data").setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
+
+        firebaseUser.updateProfile(userProfileChangeRequest);
+        firebaseUser.updateEmail(edEmail.getText().toString());
+        firebaseUser.updatePassword(edPassword.getText().toString());
+        startActivity(new Intent(getBaseContext(), MainActivity.class));
+        Toast.makeText(getBaseContext(),"Data updated",Toast.LENGTH_LONG).show();
+
+
+    }
+}).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        Toast.makeText(getBaseContext(),"Ignore update",Toast.LENGTH_LONG).show();
+        menu.findItem(R.id.edit_data_menu).setVisible(true);
+        menu.findItem(R.id.save_data_menu).setVisible(false);
+
+    }
+}).show();
+
+
 disableFields();
                 return true;
             }

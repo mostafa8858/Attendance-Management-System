@@ -63,6 +63,11 @@ userImage.setOnClickListener(new View.OnClickListener() {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        tvStudentName.setText(firebaseUser.getDisplayName());
+    }
 
     public void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
