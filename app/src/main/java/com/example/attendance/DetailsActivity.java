@@ -84,10 +84,11 @@ public class DetailsActivity extends AppCompatActivity {
 
                 firebaseUser.updateProfile(userProfileChangeRequest);
                 firebaseUser.updateEmail(edEmail.getText().toString());
-
+                disableFields();
             case R.id.edit_data_menu:
                 menu.findItem(R.id.edit_data_menu).setVisible(false);
                 menu.findItem(R.id.save_data_menu).setVisible(true);
+                enableFields();
                 return true;
 
         }
