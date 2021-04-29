@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,10 +33,11 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        setSupportActionBar(toolbar);
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         toolbar = findViewById(R.id.tool_bar_details);
+        setSupportActionBar(toolbar);
         edName = findViewById(R.id.edit_text_name_details);
         edEmail = findViewById(R.id.edit_text_email_details);
         edPassword = findViewById(R.id.edit_text_password_details);
@@ -46,8 +48,9 @@ public class DetailsActivity extends AppCompatActivity {
         toolbar.setTitle(firebaseUser.getDisplayName());
         edName.setText(firebaseUser.getDisplayName());
         edEmail.setText(firebaseUser.getEmail());
-        edPassword.setText("@!sa6889/#$AFEff");
         edPhone.setText(firebaseUser.getPhoneNumber());
+
+
 
         if (firebaseUser.getPhotoUrl() != null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
@@ -70,31 +73,32 @@ public class DetailsActivity extends AppCompatActivity {
         MenuItem edit = menu.findItem(R.id.edit_data_menu);
         MenuItem save = menu.findItem(R.id.save_data_menu);
         edit.setVisible(true);
-        save.setVisible(false);
+        save.setVisible(true);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.save_data_menu:
-                UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
-
-                firebaseUser.updateProfile(userProfileChangeRequest);
-                firebaseUser.updateEmail(edEmail.getText().toString());
-                disableFields();
-            case R.id.edit_data_menu:
-                menu.findItem(R.id.edit_data_menu).setVisible(false);
-                menu.findItem(R.id.save_data_menu).setVisible(true);
-                enableFields();
-                return true;
-
-        }
-        return false;
-
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case R.id.save_data_menu:
+//                UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+//                        .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
+//
+//                firebaseUser.updateProfile(userProfileChangeRequest);
+//                firebaseUser.updateEmail(edEmail.getText().toString());
+//                firebaseUser.updatePassword(edPassword.getText().toString());
+//                disableFields();
+//            case R.id.edit_data_menu:
+//                menu.findItem(R.id.edit_data_menu).setVisible(false);
+//                menu.findItem(R.id.save_data_menu).setVisible(true);
+//                enableFields();
+//                return true;
+//
+//        }
+//        return false;
+//
+//    }
 
     void disableFields() {
         edName.setActivated(false);
