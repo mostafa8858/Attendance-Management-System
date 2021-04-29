@@ -11,7 +11,7 @@
 
     <string name="facebook_app_id">[APP_ID]</string>
     <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
-=======
+
     <string name="phone_number">Phone Number</string>
     <string name="Edit">Edit</string>
     <string name="save">Save</string>
