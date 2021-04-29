@@ -8,4 +8,6 @@
     <string name="welcome_back_in_main">Welcome Back</string>
     <string name="Log_out">Log Out</string>
     <string name="kind_of_user">You Are Admin</string>
+    <string name="facebook_app_id">[APP_ID]</string>
+    <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
 </resources>
