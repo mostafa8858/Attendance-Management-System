@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    style="@style/AppBaseTheme"
+    tools:context=".DetailsActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+
+            >
+
+            <ImageView
+                android:id="@+id/image_in_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+
+                android:scaleType="centerCrop"
+
+
+                android:background="@color/register_bk_color" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tool_bar_details"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp">
+
+
+            <EditText
+                android:id="@+id/edit_text_name_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/ic_user_name"
+                android:enabled="false"
+                android:paddingTop="30dp"
+                android:text="@string/user_name" />
+
+
+            <EditText
+                android:id="@+id/edit_text_email_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/ic_email"
+                android:enabled="false"
+                android:paddingTop="30dp"
+                android:text="@string/login_email_hint" />
+
+
+            <EditText
+                android:id="@+id/edit_text_number_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/ic_phone_numbers_call"
+                android:enabled="false"
+                android:paddingTop="30dp"
+                android:text="@string/phone_number" />
+
+            <EditText
+                android:id="@+id/edit_text_password_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/ic_password"
+                android:enabled="false"
+                android:inputType="textPassword"
+                android:paddingTop="30dp"
+                android:text="@string/login_password_hint" />
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -8,6 +8,12 @@
     <string name="welcome_back_in_main">Welcome Back</string>
     <string name="Log_out">Log Out</string>
     <string name="kind_of_user">You Are Admin</string>
+<<<<<<< HEAD
     <string name="facebook_app_id">[APP_ID]</string>
     <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
+=======
+    <string name="phone_number">Phone Number</string>
+    <string name="Edit">Edit</string>
+    <string name="save">Save</string>
+>>>>>>> bf3a3f9e16daa2e620a5ae311a695520776496f0
 </resources>

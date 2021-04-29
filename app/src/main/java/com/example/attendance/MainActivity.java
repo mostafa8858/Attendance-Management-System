@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvStudentName,tvLogOut;
+    private TextView tvStudentName, tvLogOut;
+    private ImageView userImage;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private ProgressBar progressBar;
@@ -26,25 +28,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         changeStatusBarColor();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
 
         tvStudentName = findViewById(R.id.user_name);
-        tvLogOut=findViewById(R.id.log_out);
-progressBar=findViewById(R.id.progressBar_main);
+        tvLogOut = findViewById(R.id.log_out);
+        progressBar = findViewById(R.id.progressBar_main);
+        userImage=findViewById(R.id.user_image);
 
 
         tvStudentName.setText(firebaseUser.getDisplayName());
 
-
+userImage.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(getBaseContext(),DetailsActivity.class));
+        overridePendingTransition(R.anim.slide_up,R.anim.stay);
+    }
+});
         tvLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
                 firebaseAuth.signOut();
-                Toast.makeText(getBaseContext(),"Log Out",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Log Out", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getBaseContext(), LoginActivity.class));
                 finish();
             }
@@ -61,5 +71,7 @@ progressBar=findViewById(R.id.progressBar_main);
             window.setStatusBarColor(getResources().getColor(R.color.main_bk_color));
         }
     }
+
+
 
 }
