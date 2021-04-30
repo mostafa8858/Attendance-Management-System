@@ -116,12 +116,22 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         // first name check
+
+        // .', '#', '$', '[', or ']'
+
         if (fName.isEmpty()) {
             edFirstName.setError("Enter the Name");
             edFirstName.requestFocus();
         } else if (fName.length() < 3) {
             edFirstName.setError("the name length less than 3");
             edFirstName.requestFocus();
+        } else if (fName.contains(".") || fName.contains("#") || fName.contains("$") || fName.contains("[") || fName.contains("]")) {
+            edFirstName.setError("must not contain '.', '#', '$', '[', or ']'");
+            edFirstName.requestFocus();
+        } else if (fName.length() > 10) {
+            edFirstName.setError("the name length more than 10");
+            edFirstName.requestFocus();
+
         }
 
 
@@ -131,6 +141,9 @@ public class RegisterActivity extends AppCompatActivity {
             edLastName.requestFocus();
         } else if (lName.length() < 3) {
             edLastName.setError("the name length less than 3");
+            edLastName.requestFocus();
+        } else if (lName.contains(".") || lName.contains("#") || lName.contains("$") || lName.contains("[") || lName.contains("]")) {
+            edLastName.setError("must not contain '.', '#', '$', '[', or ']'");
             edLastName.requestFocus();
         }
 
@@ -196,7 +209,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (userKind.equals(User.Admin.ADMIN)) {
 
 
-                            String firstName, lastName, email, phoneNumber, password, id;
+                            String firstName, lastName, email, phoneNumber, password;
 
 
                             firebaseDatabaseRefrence = FirebaseDatabase.getInstance().getReference("Admin");
@@ -205,23 +218,21 @@ public class RegisterActivity extends AppCompatActivity {
                             email = edEmail.getText().toString();
                             phoneNumber = edMobile.getText().toString();
                             password = edPassword.getText().toString();
-                            id = firebaseDatabaseRefrence.push().getKey();
-                            User.Admin admin = new User.Admin(firstName, lastName, email, phoneNumber, password, id, null);
-                            firebaseDatabaseRefrence.child(admin.getId()).setValue(admin);
+                            User.Admin admin = new User.Admin(firstName, lastName, email, phoneNumber, password, null);
+                            firebaseDatabaseRefrence.child(admin.getFirstName() + admin.getLastName()).setValue(admin);
 
 
                         } else if (userKind.equals(User.Student.STUDENT)) {
-                            String firstName, lastName, email, phoneNumber, password, fingerPrint, grade, id;
+                            String firstName, lastName, email, phoneNumber, password, fingerPrint, grade;
                             firebaseDatabaseRefrence = FirebaseDatabase.getInstance().getReference("Student");
                             firstName = edFirstName.getText().toString();
                             lastName = edLastName.getText().toString();
                             email = edEmail.getText().toString();
                             phoneNumber = edMobile.getText().toString();
                             password = edPassword.getText().toString();
-                            id = firebaseDatabaseRefrence.push().getKey();
                             User.Student student =
-                                    new User.Student(firstName, lastName, email, phoneNumber, password, null, null, id, null);
-                            firebaseDatabaseRefrence.child(student.getId()).setValue(student);
+                                    new User.Student(firstName, lastName, email, phoneNumber, password, "null", "null", null);
+                            firebaseDatabaseRefrence.child(student.getFirstName() + student.getLastName()).setValue(student);
                         }
 
 

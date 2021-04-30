@@ -6,29 +6,21 @@ public class User {
     public static class Admin {
 
         public final static String ADMIN = "Admin";
-        private String firstName, lastName, email, phoneNumber, password, id;
+        private String firstName, lastName, email, phoneNumber, password;
         private Uri image;
 
         public Admin() {
         }
 
-        public Admin(String firstName, String lastName, String email, String phoneNumber, String password, String id, Uri image) {
+        public Admin(String firstName, String lastName, String email, String phoneNumber, String password, Uri image) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
             this.phoneNumber = phoneNumber;
             this.password = password;
-            this.id = id;
             this.image = image;
         }
 
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
 
         public String getFirstName() {
             return firstName;
@@ -81,21 +73,14 @@ public class User {
 
     public static class Student {
         public final static String STUDENT = "Student";
-        private String firstName, lastName, email, phoneNumber, password, fingerPrint, grade, id;
+        private String firstName, lastName, email, phoneNumber, password, fingerPrint, grade;
         private Uri image;
 
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
 
         public Student() {
         }
 
-        public Student(String firstName, String lastName, String email, String phoneNumber, String password, String fingerPrint, String grade, String id, Uri image) {
+        public Student(String firstName, String lastName, String email, String phoneNumber, String password, String fingerPrint, String grade, Uri image) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
@@ -103,7 +88,6 @@ public class User {
             this.password = password;
             this.fingerPrint = fingerPrint;
             this.grade = grade;
-            this.id = id;
             this.image = image;
         }
 

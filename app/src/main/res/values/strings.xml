@@ -20,5 +20,6 @@
     <string name="firstNameHint">First Name</string>
     <string name="LastNameHint">Last Name</string>
     <string name="userKind">User Kind</string>
+    <string name="user_id">Id</string>
 
 </resources>
