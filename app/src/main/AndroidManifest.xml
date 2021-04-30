@@ -16,9 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.DetailsActivity"
-            android:parentActivityName=".Activity.MainActivity"
-            >
+        <activity
+            android:name=".Activity.DetailsActivity"
+            android:parentActivityName=".Activity.MainActivity">
 
         </activity>
         <activity android:name=".Activity.MainActivity" />
@@ -47,6 +47,11 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
 
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -54,6 +59,7 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
