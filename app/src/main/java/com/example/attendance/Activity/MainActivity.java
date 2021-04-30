@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvStudentName, tvLogOut;
+    private TextView tvStudentName,tvLogOut;
     private ImageView userImage;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;

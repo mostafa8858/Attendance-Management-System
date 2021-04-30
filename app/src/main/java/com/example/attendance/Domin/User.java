@@ -3,21 +3,21 @@ package com.example.attendance.Domin;
 import android.net.Uri;
 
 public class User {
-    public class Admin {
+    public static class Admin {
 
-
-        String FirstName, LastName, Email, PhoneNumber, Password, id;
-        Uri image;
+        public final static String ADMIN = "Admin";
+        private String firstName, lastName, email, phoneNumber, password, id;
+        private Uri image;
 
         public Admin() {
         }
 
         public Admin(String firstName, String lastName, String email, String phoneNumber, String password, String id, Uri image) {
-            FirstName = firstName;
-            LastName = lastName;
-            Email = email;
-            PhoneNumber = phoneNumber;
-            Password = password;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.phoneNumber = phoneNumber;
+            this.password = password;
             this.id = id;
             this.image = image;
         }
@@ -31,43 +31,43 @@ public class User {
         }
 
         public String getFirstName() {
-            return FirstName;
+            return firstName;
         }
 
         public void setFirstName(String firstName) {
-            FirstName = firstName;
+            this.firstName = firstName;
         }
 
         public String getLastName() {
-            return LastName;
+            return lastName;
         }
 
         public void setLastName(String lastName) {
-            LastName = lastName;
+            this.lastName = lastName;
         }
 
         public String getEmail() {
-            return Email;
+            return email;
         }
 
         public void setEmail(String email) {
-            Email = email;
+            this.email = email;
         }
 
         public String getPhoneNumber() {
-            return PhoneNumber;
+            return phoneNumber;
         }
 
         public void setPhoneNumber(String phoneNumber) {
-            PhoneNumber = phoneNumber;
+            this.phoneNumber = phoneNumber;
         }
 
         public String getPassword() {
-            return Password;
+            return password;
         }
 
         public void setPassword(String password) {
-            Password = password;
+            this.password = password;
         }
 
         public Uri getImage() {
@@ -79,71 +79,80 @@ public class User {
         }
     }
 
-    public class Student {
-        String FirstName, LastName, Email, PhoneNumber, Password, FingerPrint, grade,id;
-        Uri image;
+    public static class Student {
+        public final static String STUDENT = "Student";
+        private String firstName, lastName, email, phoneNumber, password, fingerPrint, grade, id;
+        private Uri image;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
 
         public Student() {
         }
 
         public Student(String firstName, String lastName, String email, String phoneNumber, String password, String fingerPrint, String grade, String id, Uri image) {
-            FirstName = firstName;
-            LastName = lastName;
-            Email = email;
-            PhoneNumber = phoneNumber;
-            Password = password;
-            FingerPrint = fingerPrint;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.phoneNumber = phoneNumber;
+            this.password = password;
+            this.fingerPrint = fingerPrint;
             this.grade = grade;
             this.id = id;
             this.image = image;
         }
 
         public String getFirstName() {
-            return FirstName;
+            return firstName;
         }
 
         public void setFirstName(String firstName) {
-            FirstName = firstName;
+            this.firstName = firstName;
         }
 
         public String getLastName() {
-            return LastName;
+            return lastName;
         }
 
         public void setLastName(String lastName) {
-            LastName = lastName;
+            this.lastName = lastName;
         }
 
         public String getEmail() {
-            return Email;
+            return email;
         }
 
         public void setEmail(String email) {
-            Email = email;
+            this.email = email;
         }
 
         public String getPhoneNumber() {
-            return PhoneNumber;
+            return phoneNumber;
         }
 
         public void setPhoneNumber(String phoneNumber) {
-            PhoneNumber = phoneNumber;
+            this.phoneNumber = phoneNumber;
         }
 
         public String getPassword() {
-            return Password;
+            return password;
         }
 
         public void setPassword(String password) {
-            Password = password;
+            this.password = password;
         }
 
         public String getFingerPrint() {
-            return FingerPrint;
+            return fingerPrint;
         }
 
         public void setFingerPrint(String fingerPrint) {
-            FingerPrint = fingerPrint;
+            this.fingerPrint = fingerPrint;
         }
 
         public String getGrade() {
