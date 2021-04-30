@@ -6,21 +6,29 @@ public class User {
     public static class Admin {
 
         public final static String ADMIN = "Admin";
-        private String firstName, lastName, email, phoneNumber, password;
+        private String firstName, lastName, email, phoneNumber, password,id;
         private Uri image;
 
         public Admin() {
         }
 
-        public Admin(String firstName, String lastName, String email, String phoneNumber, String password, Uri image) {
+        public Admin(String firstName, String lastName, String email, String phoneNumber, String password,String id, Uri image) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
+            this.id=id;
             this.phoneNumber = phoneNumber;
             this.password = password;
             this.image = image;
         }
 
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
 
         public String getFirstName() {
             return firstName;
@@ -73,22 +81,31 @@ public class User {
 
     public static class Student {
         public final static String STUDENT = "Student";
-        private String firstName, lastName, email, phoneNumber, password, fingerPrint, grade;
+        private String firstName, lastName, email, phoneNumber, password, fingerPrint, grade,id;
         private Uri image;
 
 
         public Student() {
         }
 
-        public Student(String firstName, String lastName, String email, String phoneNumber, String password, String fingerPrint, String grade, Uri image) {
+        public Student(String firstName, String lastName, String email, String phoneNumber, String password, String fingerPrint, String grade,String id, Uri image) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
             this.phoneNumber = phoneNumber;
+            this.id=id;
             this.password = password;
             this.fingerPrint = fingerPrint;
             this.grade = grade;
             this.image = image;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
         }
 
         public String getFirstName() {

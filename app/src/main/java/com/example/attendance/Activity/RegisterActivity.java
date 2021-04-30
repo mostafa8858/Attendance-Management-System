@@ -209,7 +209,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (userKind.equals(User.Admin.ADMIN)) {
 
 
-                            String firstName, lastName, email, phoneNumber, password;
+                            String firstName, lastName, email, phoneNumber, password, id;
 
 
                             firebaseDatabaseRefrence = FirebaseDatabase.getInstance().getReference("Admin");
@@ -218,21 +218,23 @@ public class RegisterActivity extends AppCompatActivity {
                             email = edEmail.getText().toString();
                             phoneNumber = edMobile.getText().toString();
                             password = edPassword.getText().toString();
-                            User.Admin admin = new User.Admin(firstName, lastName, email, phoneNumber, password, null);
-                            firebaseDatabaseRefrence.child(admin.getFirstName() + admin.getLastName()).setValue(admin);
+                            id = firebaseDatabaseRefrence.push().getKey();
+                            User.Admin admin = new User.Admin(firstName, lastName, email, phoneNumber, password, id, null);
+                            firebaseDatabaseRefrence.child(admin.getFirstName() + admin.getLastName() + admin.getId()).setValue(admin);
 
 
                         } else if (userKind.equals(User.Student.STUDENT)) {
-                            String firstName, lastName, email, phoneNumber, password, fingerPrint, grade;
+                            String firstName, lastName, email, phoneNumber, password, fingerPrint, grade, id;
                             firebaseDatabaseRefrence = FirebaseDatabase.getInstance().getReference("Student");
                             firstName = edFirstName.getText().toString();
                             lastName = edLastName.getText().toString();
                             email = edEmail.getText().toString();
                             phoneNumber = edMobile.getText().toString();
                             password = edPassword.getText().toString();
+                            id = firebaseDatabaseRefrence.push().getKey();
                             User.Student student =
-                                    new User.Student(firstName, lastName, email, phoneNumber, password, "null", "null", null);
-                            firebaseDatabaseRefrence.child(student.getFirstName() + student.getLastName()).setValue(student);
+                                    new User.Student(firstName, lastName, email, phoneNumber, password, "null", "null", id, null);
+                            firebaseDatabaseRefrence.child(student.getFirstName() + student.getLastName()+  "   " + student.getGrade() +"    "    +student.getId() ).setValue(student);
                         }
 
 
