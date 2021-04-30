@@ -16,5 +16,11 @@
     <string name="phone_number">Phone Number</string>
     <string name="Edit">Edit</string>
     <string name="save">Save</string>
+    <string name="admin">Admin</string>
+    <string name="Student">Student</string>
+    <string name="firstNameHint">First Name</string>
+    <string name="LastNameHint">Last Name</string>
+    <string name="userKind">User Kind</string>
+    <string name="user_id">Id</string>
 
 </resources>
