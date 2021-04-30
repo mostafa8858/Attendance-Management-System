@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.CallbackManager;
@@ -34,8 +35,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.google.firebase.database.core.utilities.DefaultRunLoop;
+
+import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String EMAIL = "email";
     private LoginButton login_button;
     private ImageView registerImage;
     private TextView registertext;
@@ -43,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private ProgressBar progressBar;
     public FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
     private CallbackManager mCallbackManager;
     private static final  String TAG ="FacebookAuth";
     @Override
@@ -50,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         FacebookSdk.sdkInitialize(LoginActivity.this);
+         firebaseAuth=FirebaseAuth.getInstance();
         changeStatusBarColor();
         mCallbackManager = CallbackManager.Factory.create();
         login_button =findViewById(R.id.login_button);
@@ -90,19 +99,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-    private void  LoginWithFaceBook(){
+    // FaceBook Login
+    private void  LoginWithFaceBook() {
 
-        login_button.setPermissions("email", "public_profile");
+        login_button.setPermissions(Arrays.asList(EMAIL));
         login_button.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
-              //  handleFacebookAccessToken(loginResult.getAccessToken());
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(getBaseContext(), "login sucsses", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
-                finish();
-
+                handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
@@ -112,12 +117,24 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
+              Log.d(TAG,"facebook:onError" +error);
             }
         });
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if(currentUser!=null){ updateUI(currentUser);}
 
     }
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+            mCallbackManager.onActivityResult(requestCode,resultCode,data);
+            super.onActivityResult(requestCode,resultCode,data );
+        }
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
 
@@ -136,24 +153,26 @@ public class LoginActivity extends AppCompatActivity {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+
                         }
                     }
                 });
     }
 
-    //When initializing your com.example.attendance.Activity, check to see if the user is currently signed in  دي بتشوف المستخدم مسجل ولا لا
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
+    private void updateUI(FirebaseUser user) {
+        if(user!=null){
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(getBaseContext(), "login sucsses", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getBaseContext(), MainActivity.class));
+            finish();
+        }
+        else {
+            Toast.makeText(this, "please sign to continue", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
-
-    private void updateUI(FirebaseUser currentUser) {
-    }
-
+    //// End of FaceBook Lgoin
     private void userLogin() {
         String email, password;
         email = edEmail.getText().toString();
@@ -204,3 +223,4 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 }
+
