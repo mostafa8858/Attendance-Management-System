@@ -69,6 +69,7 @@ userImage.setOnClickListener(new View.OnClickListener() {
     @Override
     protected void onStart() {
         super.onStart();
+
         tvStudentName.setText(firebaseUser.getDisplayName());
     }
 

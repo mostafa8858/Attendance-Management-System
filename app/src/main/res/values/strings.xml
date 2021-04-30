@@ -9,8 +9,9 @@
     <string name="Log_out">Log Out</string>
     <string name="kind_of_user">You Are Admin</string>
 
-    <string name="facebook_app_id">300905251601978</string>
-    <string name="fb_login_protocol_scheme">fb300905251601978</string>
+    <string name="facebook_app_id">291685792487921</string>
+    <string name="fb_login_protocol_scheme">fb291685792487921</string>
+
 
 
     <string name="phone_number">Phone Number</string>
