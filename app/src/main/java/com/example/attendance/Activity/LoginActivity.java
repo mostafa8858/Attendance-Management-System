@@ -3,11 +3,6 @@ package com.example.attendance.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.example.attendance.R;
-import com.facebook.AccessToken;
-import com.facebook.FacebookSdk;
-
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -23,9 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.attendance.R;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,9 +33,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-import com.google.firebase.database.core.utilities.DefaultRunLoop;
 
 import java.util.Arrays;
 
@@ -52,16 +47,17 @@ public class LoginActivity extends AppCompatActivity {
     public FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private CallbackManager mCallbackManager;
-    private static final  String TAG ="FacebookAuth";
+    private static final String TAG = "FacebookAuth";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         FacebookSdk.sdkInitialize(LoginActivity.this);
-         firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         changeStatusBarColor();
         mCallbackManager = CallbackManager.Factory.create();
-        login_button =findViewById(R.id.login_button);
+        login_button = findViewById(R.id.login_button);
 
         registerImage = findViewById(R.id.plus_image_in_login);
         registertext = findViewById(R.id.tv_register_in_login);
@@ -93,14 +89,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), RegisterActivity.class));
-            finish();
+                finish();
             }
         });
 
 
     }
+
     // FaceBook Login
-    private void  LoginWithFaceBook() {
+    private void LoginWithFaceBook() {
 
         login_button.setPermissions(Arrays.asList(EMAIL));
         login_button.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
@@ -117,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onError(FacebookException error) {
-              Log.d(TAG,"facebook:onError" +error);
+                Log.d(TAG, "facebook:onError" + error);
             }
         });
     }
@@ -127,14 +124,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if(currentUser!=null){ updateUI(currentUser);}
+        if (currentUser != null) {
+            updateUI(currentUser);
+        }
 
     }
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-            mCallbackManager.onActivityResult(requestCode,resultCode,data);
-            super.onActivityResult(requestCode,resultCode,data );
-        }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
 
@@ -160,13 +161,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
-        if(user!=null){
+        if (user != null) {
             progressBar.setVisibility(View.GONE);
             Toast.makeText(getBaseContext(), "login sucsses", Toast.LENGTH_LONG).show();
             startActivity(new Intent(getBaseContext(), MainActivity.class));
             finish();
-        }
-        else {
+        } else {
             Toast.makeText(this, "please sign to continue", Toast.LENGTH_SHORT).show();
         }
     }
@@ -198,6 +198,8 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+
+
                         progressBar.setVisibility(View.GONE);
                         Toast.makeText(getBaseContext(), "login sucsses", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(getBaseContext(), MainActivity.class));
