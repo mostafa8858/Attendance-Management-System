@@ -6,19 +6,28 @@ public class User {
     public class Admin {
 
 
-        String FirstName, LastName, Email, PhoneNumber, Password;
+        String FirstName, LastName, Email, PhoneNumber, Password, id;
         Uri image;
 
         public Admin() {
         }
 
-        public Admin(String firstName, String lastName, String email, String phoneNumber, String password, Uri image) {
+        public Admin(String firstName, String lastName, String email, String phoneNumber, String password, String id, Uri image) {
             FirstName = firstName;
             LastName = lastName;
             Email = email;
             PhoneNumber = phoneNumber;
             Password = password;
+            this.id = id;
             this.image = image;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
         }
 
         public String getFirstName() {
@@ -71,13 +80,13 @@ public class User {
     }
 
     public class Student {
-        String FirstName, LastName, Email, PhoneNumber, Password, FingerPrint, grade;
+        String FirstName, LastName, Email, PhoneNumber, Password, FingerPrint, grade,id;
         Uri image;
 
         public Student() {
         }
 
-        public Student(String firstName, String lastName, String email, String phoneNumber, String password, String fingerPrint, String grade, Uri image) {
+        public Student(String firstName, String lastName, String email, String phoneNumber, String password, String fingerPrint, String grade, String id, Uri image) {
             FirstName = firstName;
             LastName = lastName;
             Email = email;
@@ -85,6 +94,7 @@ public class User {
             Password = password;
             FingerPrint = fingerPrint;
             this.grade = grade;
+            this.id = id;
             this.image = image;
         }
 

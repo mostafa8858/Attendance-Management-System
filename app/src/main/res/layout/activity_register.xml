@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.RegisterActivity"
     android:layout_gravity="center"
     android:background="#1E88E5"
     android:focusableInTouchMode="true"
-    android:gravity="center">
-
+    android:gravity="center"
+    tools:context=".Activity.RegisterActivity">
 
 
     <ScrollView
@@ -59,7 +58,6 @@
                     android:orientation="vertical">
 
 
-
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputFirstName"
                         style="@style/parent"
@@ -68,16 +66,12 @@
                         <EditText
                             android:id="@+id/editInputFirstNameRegister"
                             style="@style/modifiedEditText"
+                            android:ems="8"
                             android:hint="@string/firstNameHint"
                             android:inputType="textPersonName"
-                            android:ems="8"
                             android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -93,10 +87,6 @@
                             android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -151,36 +141,45 @@
                         <EditText
                             android:id="@+id/editInputReWritePasswordRegister"
                             style="@style/modifiedEditText"
+                            android:layout_marginBottom="20dp"
                             android:hint="@string/login_Repassword_hint"
                             android:inputType="textPassword"
-                            android:maxLines="1"
-                            android:layout_marginBottom="20dp"
-                            />
+                            android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <RadioGroup
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
 
-                        <RadioButton
+                        <RadioGroup
 
-                            android:id="@+id/radioButtonAdmin"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/admin" />
+                            android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/radioButtonStudent"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Student" />
-                    </RadioGroup>
+                            <RadioButton
+
+                                android:id="@+id/radioButtonAdmin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/admin" />
+
+                            <RadioButton
+                                android:id="@+id/radioButtonStudent"
+                                android:layout_width="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="@string/Student" />
+                        </RadioGroup>
+
+
+
+
+
+
+
+
 
                     <Button
                         android:id="@+id/register_Button"
@@ -211,12 +210,12 @@
     </ScrollView>
 
     <View
-    android:layout_width="11dp"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentRight="true"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/ic_side_bg2"/>
+        android:layout_width="11dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_side_bg2" />
 
     <ImageView
         android:id="@+id/to_back_image_in_register"

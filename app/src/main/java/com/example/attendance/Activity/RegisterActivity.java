@@ -17,14 +17,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.attendance.Activity.LoginActivity;
 import com.example.attendance.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -64,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         rbStudent = findViewById(R.id.radioButtonStudent);
         progressBar = findViewById(R.id.progressBar_register);
 
+
         tologintext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,23 +86,56 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+private  String  selectedRadioButton(){
+        String userKind;
+        if(rbAdmin.isChecked()){
+            userKind=rbAdmin.getText().toString();
+        }
+        else if(rbStudent.isChecked()){
+            userKind=rbStudent.getText().toString();
+
+        }
+        else{
+            userKind=null;
+        }
+        return  userKind;
+
+    }
+
+
     private void insertNewUser() {
 
-        String name, email, password, mobile, reWritepassword;
-        name = edFirstName.getText().toString();
+        String fName,lName, email, password, mobile, reWritepassword ,userKind;
+        fName = edFirstName.getText().toString();
+        lName=edLastName.getText().toString();
         email = edEmail.getText().toString();
         password = edPassword.getText().toString();
         mobile = edMobile.getText().toString();
         reWritepassword = edReWritePassword.getText().toString();
 
-        // name check
-        if (name.isEmpty()) {
+
+
+
+        // first name check
+        if (fName.isEmpty()) {
             edFirstName.setError("Enter the Name");
             edFirstName.requestFocus();
-        } else if (name.length() < 3) {
+        } else if (fName.length() < 3) {
             edFirstName.setError("the name length less than 3");
             edFirstName.requestFocus();
         }
+
+
+        //last name check
+        else if (lName.isEmpty()) {
+            edLastName.setError("Enter the Name");
+            edLastName.requestFocus();
+        } else if (lName.length() < 3) {
+            edLastName.setError("the name length less than 3");
+            edLastName.requestFocus();
+        }
+
+
         //email check
         else if (email.isEmpty()) {
             edEmail.setError("Enter the Email");
@@ -135,6 +167,15 @@ public class RegisterActivity extends AppCompatActivity {
             edReWritePassword.requestFocus();
         }
 
+
+        //user kind check
+
+        else if (!rbStudent.isChecked() && !rbAdmin.isChecked() ) {
+            Toast.makeText(getBaseContext(), "Select Kind Of User", Toast.LENGTH_LONG).show();
+
+        }
+
+
         //No wrong detect
         else {
             progressBar.setVisibility(View.VISIBLE);
@@ -148,15 +189,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                         UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(name).setPhotoUri(null)
+                                .setDisplayName(fName).setPhotoUri(null)
                                 .build();
                         firebaseUser.updateProfile(userProfileChangeRequest);
 
 
-                        // دي فيها شك
 
-                        PhoneAuthCredential phoneAuthCredential = PhoneAuthCredential.zzb("02", mobile);
-                        firebaseUser.updatePhoneNumber(phoneAuthCredential);
 
                         progressBar.setVisibility(View.GONE);
                         startActivity(new Intent(getBaseContext(), LoginActivity.class));
