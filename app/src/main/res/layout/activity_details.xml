@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
 
     tools:context=".Activity.DetailsActivity">
@@ -79,6 +80,7 @@
                 android:backgroundTint="@color/white"
                 android:drawableEnd="@drawable/ic_phone_numbers_call"
                 android:enabled="false"
+                android:inputType="numberSigned"
                 android:paddingTop="30dp"
                 android:text="@string/phone_number" />
 

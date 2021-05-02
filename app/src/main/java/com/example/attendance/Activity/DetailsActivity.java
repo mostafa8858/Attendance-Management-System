@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,10 +31,11 @@ public class DetailsActivity extends AppCompatActivity {
     private static final int IMAGE_REQUEST_CODE = 15;
     private Toolbar toolbar;
     private FirebaseUser firebaseUser;
-    private EditText edName, edEmail, edPassword, edPhone;
+    private EditText edName, edEmail, edPassword, edPhone, edid;
     private ImageView userImage;
     private Uri userImageUri;
     private Menu menu;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +47,23 @@ public class DetailsActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.tool_bar_details);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
 
         edName = findViewById(R.id.edit_text_name_details);
+        edid = findViewById(R.id.edit_text_id_details);
         edEmail = findViewById(R.id.edit_text_email_details);
         edPassword = findViewById(R.id.edit_text_password_details);
         edPhone = findViewById(R.id.edit_text_number_details);
         userImage = findViewById(R.id.image_in_details);
 
 
-
+        actionBar.setTitle(firebaseUser.getDisplayName());
         toolbar.setTitle(firebaseUser.getDisplayName());
+
+
+
         edName.setText(firebaseUser.getDisplayName());
         edEmail.setText(firebaseUser.getEmail());
         edPhone.setText(firebaseUser.getPhoneNumber());
@@ -69,7 +77,6 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
 
 
         userImage.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +111,7 @@ public class DetailsActivity extends AppCompatActivity {
                 builder.setTitle("Alert").setIcon(R.drawable.ic_alert).setMessage("Are You Sure Update Data").setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                   updateUserData();
+                        updateUserData();
                     }
                 }).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
                     @Override
@@ -128,7 +135,7 @@ public class DetailsActivity extends AppCompatActivity {
         return false;
     }
 
-    void updateUserData(){
+    void updateUserData() {
         UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
                 .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
         firebaseUser.updateProfile(userProfileChangeRequest);
@@ -144,6 +151,7 @@ public class DetailsActivity extends AppCompatActivity {
         edPhone.setEnabled(false);
         edPassword.setEnabled(false);
         edEmail.setEnabled(false);
+        edid.setEnabled(false);
 
 
     }
@@ -152,7 +160,7 @@ public class DetailsActivity extends AppCompatActivity {
         edName.setEnabled(true);
         edPhone.setEnabled(true);
         edPassword.setEnabled(true);
-        edEmail.setEnabled(true);
+        edid.setEnabled(true);
     }
 
     public void changeStatusBarColor() {

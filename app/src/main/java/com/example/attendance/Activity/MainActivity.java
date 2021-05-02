@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int DATA_CHANGE_REQUEST_CODE = 1414;
     private TextView tvStudentName, tvLogOut;
     private ImageView userImage;
     private FirebaseAuth firebaseAuth;
@@ -43,12 +42,21 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar_main);
         userImage = findViewById(R.id.user_image);
 
+        tvStudentName.setText(firebaseUser.getDisplayName());
+        if(userImage!=null) {
+            userImage.setImageURI(firebaseUser.getPhotoUrl());
+        }
 
-        userImage.setImageURI(firebaseUser.getPhotoUrl());
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(getBaseContext(), DetailsActivity.class),DATA_CHANGE_REQUEST_CODE);
+                startActivity(new Intent(getBaseContext(), DetailsActivity.class));
                 overridePendingTransition(R.anim.slide_up, R.anim.stay);
             }
         });
@@ -63,13 +71,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         tvStudentName.setText(firebaseUser.getDisplayName());
+        if(userImage!=null) {
+            userImage.setImageURI(firebaseUser.getPhotoUrl());
+        }
     }
 
     public void changeStatusBarColor() {
