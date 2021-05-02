@@ -40,11 +40,13 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         changeStatusBarColor();
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         toolbar = findViewById(R.id.tool_bar_details);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         edName = findViewById(R.id.edit_text_name_details);
         edEmail = findViewById(R.id.edit_text_email_details);
         edPassword = findViewById(R.id.edit_text_password_details);
@@ -52,21 +54,29 @@ public class DetailsActivity extends AppCompatActivity {
         userImage = findViewById(R.id.image_in_details);
 
 
+
         toolbar.setTitle(firebaseUser.getDisplayName());
         edName.setText(firebaseUser.getDisplayName());
         edEmail.setText(firebaseUser.getEmail());
         edPhone.setText(firebaseUser.getPhoneNumber());
-
-
         if (firebaseUser.getPhotoUrl() != null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
         }
-        userImage.setOnLongClickListener(new View.OnLongClickListener() {
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+
+        userImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, IMAGE_REQUEST_CODE);
-                return false;
             }
         });
 
@@ -81,8 +91,6 @@ public class DetailsActivity extends AppCompatActivity {
         MenuItem save = menu.findItem(R.id.save_data_menu);
         edit.setVisible(true);
         save.setVisible(false);
-
-
         return true;
     }
 
@@ -92,46 +100,41 @@ public class DetailsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.save_data_menu: {
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(this);
-builder.setTitle("Alert").setIcon(R.drawable.ic_alert).setMessage("Are You Sure Update Data").setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-                .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Alert").setIcon(R.drawable.ic_alert).setMessage("Are You Sure Update Data").setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
 
-        firebaseUser.updateProfile(userProfileChangeRequest);
-        firebaseUser.updateEmail(edEmail.getText().toString());
-        firebaseUser.updatePassword(edPassword.getText().toString());
-        startActivity(new Intent(getBaseContext(), MainActivity.class));
-        Toast.makeText(getBaseContext(),"Data updated",Toast.LENGTH_LONG).show();
-
-
-    }
-}).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        Toast.makeText(getBaseContext(),"Ignore update",Toast.LENGTH_LONG).show();
-        menu.findItem(R.id.edit_data_menu).setVisible(true);
-        menu.findItem(R.id.save_data_menu).setVisible(false);
-
-    }
-}).show();
+                        firebaseUser.updateProfile(userProfileChangeRequest);
+                        firebaseUser.updateEmail(edEmail.getText().toString());
+                        firebaseUser.updatePassword(edPassword.getText().toString());
+                        startActivity(new Intent(getBaseContext(), MainActivity.class));
+                        Toast.makeText(getBaseContext(), "Data updated", Toast.LENGTH_LONG).show();
 
 
-disableFields();
+                    }
+                }).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getBaseContext(), "Ignore update", Toast.LENGTH_LONG).show();
+                        menu.findItem(R.id.edit_data_menu).setVisible(true);
+                        menu.findItem(R.id.save_data_menu).setVisible(false);
+                    }
+                }).show();
+
+                disableFields();
                 return true;
             }
             case R.id.edit_data_menu: {
                 enableFields();
                 menu.findItem(R.id.edit_data_menu).setVisible(false);
                 menu.findItem(R.id.save_data_menu).setVisible(true);
-
                 return true;
             }
-
         }
         return false;
-
     }
 
     void disableFields() {
@@ -144,12 +147,18 @@ disableFields();
     }
 
     void enableFields() {
-
         edName.setEnabled(true);
         edPhone.setEnabled(true);
         edPassword.setEnabled(true);
         edEmail.setEnabled(true);
+    }
 
+    public void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
+        }
     }
 
     @Override
@@ -163,12 +172,4 @@ disableFields();
         }
     }
 
-
-    public void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
-        }
-    }
 }

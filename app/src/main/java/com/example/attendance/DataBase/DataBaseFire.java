@@ -57,5 +57,86 @@ public class DataBaseFire {
         return students;
     }
 
+    ArrayList<String> getAdminEmail(){
+        ArrayList<String> adminEmails=new ArrayList<>();
+        firebaseDatabaseReferencee = FirebaseDatabase.getInstance().getReference(User.Admin.ADMIN);
+        firebaseDatabaseReferencee.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                User.Admin admin=dataSnapshot.getValue(User.Admin.class);
+                adminEmails.add(admin.getEmail());
+
+                }
+                }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+return adminEmails;
+    }
+
+    ArrayList<String> getStudentEmail(){
+        ArrayList<String> studentEmail=new ArrayList<>();
+        firebaseDatabaseReferencee = FirebaseDatabase.getInstance().getReference(User.Student.STUDENT);
+        firebaseDatabaseReferencee.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    User.Student student=dataSnapshot.getValue(User.Student.class);
+                    studentEmail.add(student.getEmail());
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        return studentEmail;
+    }
+
+
+
+
+ public boolean adminCheck(String email){
+        ArrayList<String> emails=getAdminEmail();
+
+        if (emails.contains(email)){
+
+            return  true;
+        }
+        else
+        {
+        return false;
+}
+    }
+
+
+
+   public boolean StudentCheck(String email){
+        ArrayList<String> emails=getStudentEmail();
+
+        if (emails.contains(email)){
+
+            return  true;
+        }
+
+        return false;
+    }
+
+
+
 
 }

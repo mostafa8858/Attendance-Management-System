@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.attendance.DataBase.DataBaseFire;
 import com.example.attendance.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -38,37 +39,57 @@ import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String EMAIL = "email";
-    private LoginButton login_button;
+    private LoginButton faceBookLogin;
     private ImageView registerImage;
     private TextView registertext;
     private EditText edEmail, edPassword;
     private Button loginButton;
     private ProgressBar progressBar;
     public FirebaseAuth firebaseAuth;
-    private FirebaseUser firebaseUser;
     private CallbackManager mCallbackManager;
     private static final String TAG = "FacebookAuth";
+    private DataBaseFire dataBaseFire;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        FacebookSdk.sdkInitialize(LoginActivity.this);
-        firebaseAuth = FirebaseAuth.getInstance();
         changeStatusBarColor();
-        mCallbackManager = CallbackManager.Factory.create();
-        login_button = findViewById(R.id.login_button);
 
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        dataBaseFire=new DataBaseFire();
+
+        FacebookSdk.sdkInitialize(LoginActivity.this);
+        mCallbackManager = CallbackManager.Factory.create();
+
+
+
+
+        faceBookLogin = findViewById(R.id.login_button_facebook);
         registerImage = findViewById(R.id.plus_image_in_login);
         registertext = findViewById(R.id.tv_register_in_login);
         edEmail = findViewById(R.id.editInputEmaillogin);
         edPassword = findViewById(R.id.editInputPasswordlogin);
         loginButton = findViewById(R.id.loginbutton);
         progressBar = findViewById(R.id.progressBar_login);
-        login_button.setOnClickListener(new View.OnClickListener() {
+
+
+
+    }
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+        faceBookLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginWithFaceBook();
+                loginWithFaceBook();
             }
         });
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -94,13 +115,19 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            updateUI(currentUser);
+        }
+
     }
 
     // FaceBook Login
-    private void LoginWithFaceBook() {
+    private void loginWithFaceBook() {
 
-        login_button.setPermissions(Arrays.asList(EMAIL));
-        login_button.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+        faceBookLogin.setPermissions(Arrays.asList(EMAIL));
+        faceBookLogin.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
@@ -117,23 +144,6 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "facebook:onError" + error);
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if (currentUser != null) {
-            updateUI(currentUser);
-        }
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
@@ -170,9 +180,8 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "please sign to continue", Toast.LENGTH_SHORT).show();
         }
     }
-
-
     //// End of FaceBook Lgoin
+
     private void userLogin() {
         String email, password;
         email = edEmail.getText().toString();
@@ -198,6 +207,12 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        if (dataBaseFire.adminCheck(email)) {
+                            Toast.makeText(getBaseContext(),"admin",Toast.LENGTH_LONG).show();
+                        } else if(dataBaseFire.StudentCheck(email)) {
+                            Toast.makeText(getBaseContext(),"student",Toast.LENGTH_LONG).show();
+
+                        }
 
 
                         progressBar.setVisibility(View.GONE);
@@ -216,13 +231,18 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
     public void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.login_bk_color));
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
 

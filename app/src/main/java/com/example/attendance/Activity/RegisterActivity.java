@@ -65,6 +65,13 @@ public class RegisterActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar_register);
 
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         tologintext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                 insertNewUser();
             }
         });
+
     }
 
     private String selectedRadioButton() {
@@ -101,7 +109,6 @@ public class RegisterActivity extends AppCompatActivity {
         return userKind;
 
     }
-
 
     private void insertNewUser() {
 
