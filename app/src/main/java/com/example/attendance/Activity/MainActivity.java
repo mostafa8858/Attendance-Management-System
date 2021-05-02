@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int DATA_CHANGE_REQUEST_CODE = 1414;
     private TextView tvStudentName, tvLogOut;
     private ImageView userImage;
     private FirebaseAuth firebaseAuth;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         changeStatusBarColor();
         firebaseAuth = FirebaseAuth.getInstance();
+
         firebaseUser = firebaseAuth.getCurrentUser();
 
 
@@ -42,12 +44,11 @@ public class MainActivity extends AppCompatActivity {
         userImage = findViewById(R.id.user_image);
 
 
-        tvStudentName.setText(firebaseUser.getDisplayName());
         userImage.setImageURI(firebaseUser.getPhotoUrl());
         userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), DetailsActivity.class));
+                startActivityForResult(new Intent(getBaseContext(), DetailsActivity.class),DATA_CHANGE_REQUEST_CODE);
                 overridePendingTransition(R.anim.slide_up, R.anim.stay);
             }
         });
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         tvStudentName.setText(firebaseUser.getDisplayName());
     }
 

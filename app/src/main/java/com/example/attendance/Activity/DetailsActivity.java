@@ -104,16 +104,7 @@ public class DetailsActivity extends AppCompatActivity {
                 builder.setTitle("Alert").setIcon(R.drawable.ic_alert).setMessage("Are You Sure Update Data").setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
-
-                        firebaseUser.updateProfile(userProfileChangeRequest);
-                        firebaseUser.updateEmail(edEmail.getText().toString());
-                        firebaseUser.updatePassword(edPassword.getText().toString());
-                        startActivity(new Intent(getBaseContext(), MainActivity.class));
-                        Toast.makeText(getBaseContext(), "Data updated", Toast.LENGTH_LONG).show();
-
-
+                   updateUserData();
                     }
                 }).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
                     @Override
@@ -135,6 +126,17 @@ public class DetailsActivity extends AppCompatActivity {
             }
         }
         return false;
+    }
+
+    void updateUserData(){
+        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                .setDisplayName(edName.getText().toString()).setPhotoUri(userImageUri).build();
+        firebaseUser.updateProfile(userProfileChangeRequest);
+        firebaseUser.updateEmail(edEmail.getText().toString());
+        firebaseUser.updatePassword(edPassword.getText().toString());
+        startActivity(new Intent(getBaseContext(), MainActivity.class));
+        Toast.makeText(getBaseContext(), "Data updated", Toast.LENGTH_LONG).show();
+
     }
 
     void disableFields() {

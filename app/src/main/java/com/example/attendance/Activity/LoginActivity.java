@@ -13,11 +13,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.attendance.DataBase.DataBaseFire;
 import com.example.attendance.R;
 import com.facebook.AccessToken;
@@ -34,7 +32,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
@@ -75,11 +72,9 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginbutton);
         progressBar = findViewById(R.id.progressBar_login);
 
-
+        firebaseAuth.signOut();
 
     }
-
-
 
     @Override
     public void onStart() {
@@ -180,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "please sign to continue", Toast.LENGTH_SHORT).show();
         }
     }
-    //// End of FaceBook Lgoin
+    // End of FaceBook Login
 
     private void userLogin() {
         String email, password;
