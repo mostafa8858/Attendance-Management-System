@@ -13,15 +13,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.attendance.Activity.DetailsActivity;
-import com.example.attendance.Activity.LoginActivity;
+import com.example.attendance.DataBase.DataBaseFire;
 import com.example.attendance.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvStudentName,tvLogOut;
+    private TextView tvStudentName, tvLogOut;
     private ImageView userImage;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
@@ -35,24 +34,33 @@ public class MainActivity extends AppCompatActivity {
 
         changeStatusBarColor();
         firebaseAuth = FirebaseAuth.getInstance();
+
         firebaseUser = firebaseAuth.getCurrentUser();
 
 
         tvStudentName = findViewById(R.id.user_name);
         tvLogOut = findViewById(R.id.log_out);
         progressBar = findViewById(R.id.progressBar_main);
-        userImage=findViewById(R.id.user_image);
-
+        userImage = findViewById(R.id.user_image);
 
         tvStudentName.setText(firebaseUser.getDisplayName());
-userImage.setImageURI(firebaseUser.getPhotoUrl());
-userImage.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        startActivity(new Intent(getBaseContext(), DetailsActivity.class));
-        overridePendingTransition(R.anim.slide_up,R.anim.stay);
+        if(userImage!=null) {
+            userImage.setImageURI(firebaseUser.getPhotoUrl());
+        }
+
+
     }
-});
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        userImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), DetailsActivity.class));
+                overridePendingTransition(R.anim.slide_up, R.anim.stay);
+            }
+        });
         tvLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,14 +73,10 @@ userImage.setOnClickListener(new View.OnClickListener() {
             }
         });
 
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
         tvStudentName.setText(firebaseUser.getDisplayName());
+        if(userImage!=null) {
+            userImage.setImageURI(firebaseUser.getPhotoUrl());
+        }
     }
 
     public void changeStatusBarColor() {
@@ -82,7 +86,6 @@ userImage.setOnClickListener(new View.OnClickListener() {
             window.setStatusBarColor(getResources().getColor(R.color.main_bk_color));
         }
     }
-
 
 
 }
