@@ -13,9 +13,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.attendance.DataBase.DataBaseFire;
 import com.example.attendance.R;
 import com.facebook.AccessToken;
@@ -32,6 +34,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
@@ -54,14 +57,11 @@ public class LoginActivity extends AppCompatActivity {
         changeStatusBarColor();
 
 
-
         firebaseAuth = FirebaseAuth.getInstance();
-        dataBaseFire=new DataBaseFire();
+        dataBaseFire = new DataBaseFire();
 
         FacebookSdk.sdkInitialize(LoginActivity.this);
         mCallbackManager = CallbackManager.Factory.create();
-
-
 
 
         faceBookLogin = findViewById(R.id.login_button_facebook);
@@ -202,9 +202,9 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         if (dataBaseFire.adminCheck(email)) {
-                            Toast.makeText(getBaseContext(),"admin",Toast.LENGTH_LONG).show();
-                        } else if(dataBaseFire.StudentCheck(email)) {
-                            Toast.makeText(getBaseContext(),"student",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "admin", Toast.LENGTH_LONG).show();
+                        } else if (dataBaseFire.StudentCheck(email)) {
+                            Toast.makeText(getBaseContext(), "student", Toast.LENGTH_LONG).show();
 
                         }
 

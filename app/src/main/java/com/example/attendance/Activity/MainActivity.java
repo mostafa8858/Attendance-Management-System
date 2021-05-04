@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.attendance.DataBase.DataBaseFire;
 import com.example.attendance.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         userImage = findViewById(R.id.user_image);
 
         tvStudentName.setText(firebaseUser.getDisplayName());
-        if(userImage!=null) {
+        if (userImage != null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
         }
 
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         tvStudentName.setText(firebaseUser.getDisplayName());
-        if(userImage!=null) {
+        if (userImage != null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
         }
     }

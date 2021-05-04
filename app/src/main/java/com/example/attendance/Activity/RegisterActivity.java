@@ -65,7 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar_register);
 
 
-
     }
 
     @Override
@@ -241,7 +240,7 @@ public class RegisterActivity extends AppCompatActivity {
                             id = firebaseDatabaseRefrence.push().getKey();
                             User.Student student =
                                     new User.Student(firstName, lastName, email, phoneNumber, password, "null", "null", id, null);
-                            firebaseDatabaseRefrence.child(student.getFirstName() + student.getLastName()+  "   " + student.getGrade() +"    "    +student.getId() ).setValue(student);
+                            firebaseDatabaseRefrence.child(student.getFirstName() + student.getLastName() + "   " + student.getGrade() + "    " + student.getId()).setValue(student);
                         }
 
 
