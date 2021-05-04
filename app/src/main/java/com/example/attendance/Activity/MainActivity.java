@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.attendance.Activity.DetailsActivity;
 import com.example.attendance.Activity.LoginActivity;
 import com.example.attendance.R;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -57,6 +58,7 @@ userImage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
                 firebaseAuth.signOut();
+                LoginManager.getInstance().logOut();
                 Toast.makeText(getBaseContext(), "Log Out", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getBaseContext(), LoginActivity.class));
                 finish();
