@@ -11,9 +11,9 @@
 
     <string name="facebook_app_id">291685792487921</string>
     <string name="fb_login_protocol_scheme">fb291685792487921</string>
-
-
-
+    <string name="Attendance">Attendance</string>
+    <string name="generate_QR_code">generate_QR_code</string>
+    <string name="chat">chat</string>
     <string name="phone_number">Phone Number</string>
     <string name="Edit">Edit</string>
     <string name="save">Save</string>

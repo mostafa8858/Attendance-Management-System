@@ -63,6 +63,7 @@ public class DetailsActivity extends AppCompatActivity {
         toolbar.setTitle(firebaseUser.getDisplayName());
 
 
+
         edName.setText(firebaseUser.getDisplayName());
         edEmail.setText(firebaseUser.getEmail());
         edPhone.setText(firebaseUser.getPhoneNumber());

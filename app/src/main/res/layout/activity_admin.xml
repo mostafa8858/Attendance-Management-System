@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_bk_color"
-
-    tools:context=".Activity.MainActivity">
-
+    tools:context=".Activity.AdminActivity">
     <TextView
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
@@ -17,7 +15,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="-10dp"
 
-        android:text="@string/user_name"
+        android:text="@string/admin"
         android:textColor="@color/black"
         android:textSize="@dimen/user_name_text_size"
         android:textStyle="bold" />
@@ -86,16 +84,15 @@
 
                     <TextView
 
-                        android:id="@+id/text"
+                        android:id="@+id/Attendance"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:drawableTop="@drawable/ic_alarm"
+                        android:drawableTop="@drawable/attendance"
                         android:drawablePadding="5dp"
-
                         android:gravity="center"
                         android:padding="40dp"
-                        android:text="TextView"
+                        android:text="@string/Attendance"
                         android:textSize="14sp" />
                 </androidx.cardview.widget.CardView>
 
@@ -114,15 +111,15 @@
                     app:cardMaxElevation="6dp">
 
                     <TextView
-
+                        android:id="@+id/chat"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:drawableTop="@drawable/ic_calendar"
+                        android:drawableTop="@drawable/ic_chat"
                         android:drawablePadding="9dp"
                         android:gravity="center"
                         android:padding="40dp"
-                        android:text="TextView"
+                        android:text="@string/chat"
                         android:textSize="14sp" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -147,15 +144,15 @@
                     app:cardMaxElevation="6dp">
 
                     <TextView
-
+                        android:id="@+id/generate_QR_code"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:drawableTop="@drawable/ic_chat"
+                        android:drawableTop="@drawable/qr_code"
                         android:drawablePadding="5dp"
                         android:gravity="center"
                         android:padding="40dp"
-                        android:text="TextView"
+                        android:text="@string/generate_QR_code"
                         android:textSize="14sp" />
                 </androidx.cardview.widget.CardView>
 
@@ -266,6 +263,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone" />
-
-
 </RelativeLayout>

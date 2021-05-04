@@ -30,7 +30,6 @@ public class DataBaseFire {
                     admins.add(admin);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -38,7 +37,7 @@ public class DataBaseFire {
         return admins;
     }
 
-    public ArrayList<User.Student> getAllStudent() {
+    public ArrayList<User.Student> getAllStudent(){
 
         ArrayList<User.Student> students = new ArrayList<>();
 
@@ -51,7 +50,6 @@ public class DataBaseFire {
                     students.add(student);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -59,35 +57,42 @@ public class DataBaseFire {
         return students;
     }
 
-    ArrayList<String> getAdminEmail() {
-        ArrayList<String> adminEmails = new ArrayList<>();
+    ArrayList<String> getAdminEmail(){
+        ArrayList<String> adminEmails=new ArrayList<>();
         firebaseDatabaseReferencee = FirebaseDatabase.getInstance().getReference(User.Admin.ADMIN);
         firebaseDatabaseReferencee.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User.Admin admin = dataSnapshot.getValue(User.Admin.class);
-                    adminEmails.add(admin.getEmail());
+
+                User.Admin admin=dataSnapshot.getValue(User.Admin.class);
+                adminEmails.add(admin.getEmail());
+
                 }
-            }
+                }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-        return adminEmails;
+
+
+
+return adminEmails;
     }
 
-    ArrayList<String> getStudentEmail() {
-        ArrayList<String> studentEmail = new ArrayList<>();
+    ArrayList<String> getStudentEmail(){
+        ArrayList<String> studentEmail=new ArrayList<>();
         firebaseDatabaseReferencee = FirebaseDatabase.getInstance().getReference(User.Student.STUDENT);
         firebaseDatabaseReferencee.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User.Student student = dataSnapshot.getValue(User.Student.class);
+
+                    User.Student student=dataSnapshot.getValue(User.Student.class);
                     studentEmail.add(student.getEmail());
+
                 }
             }
 
@@ -96,27 +101,42 @@ public class DataBaseFire {
 
             }
         });
+
+
+
         return studentEmail;
     }
 
-    public boolean adminCheck(String email) {
-        ArrayList<String> emails = getAdminEmail();
-        if (emails.contains(email)) {
-            return true;
-        } else {
-            return false;
+
+
+
+ public boolean adminCheck(String email){
+        ArrayList<String> emails=getAdminEmail();
+
+        if (emails.contains(email)){
+
+            return  true;
         }
+        else
+        {
+        return false;
+}
     }
 
-    public boolean StudentCheck(String email) {
-        ArrayList<String> emails = getStudentEmail();
 
-        if (emails.contains(email)) {
 
-            return true;
+   public boolean StudentCheck(String email){
+        ArrayList<String> emails=getStudentEmail();
+
+        if (emails.contains(email)){
+
+            return  true;
         }
 
         return false;
     }
+
+
+
 
 }
