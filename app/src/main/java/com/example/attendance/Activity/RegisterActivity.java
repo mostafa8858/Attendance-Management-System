@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.attendance.Domin.User;
+import com.example.attendance.Prevalent;
 import com.example.attendance.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,8 +27,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
     private ImageView tologinImage;
@@ -90,7 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertNewUser();
+               // insertNewUser();
+                insertNewUserRealTime();
             }
         });
 
@@ -109,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
         return userKind;
 
     }
-
+/*
     private void insertNewUser() {
 
         String fName, lName, email, password, mobile, reWritepassword, userKind;
@@ -265,6 +272,175 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
 
+
+    }*/
+    private void insertNewUserRealTime() {
+
+        String fName, lName, email, password, mobile, reWritepassword, userKind;
+        fName = edFirstName.getText().toString();
+        lName = edLastName.getText().toString();
+        email = edEmail.getText().toString();
+        password = edPassword.getText().toString();
+        mobile = edMobile.getText().toString();
+        reWritepassword = edReWritePassword.getText().toString();
+        userKind = selectedRadioButton();
+
+
+        // first name check
+
+        // .', '#', '$', '[', or ']'
+
+        if (fName.isEmpty()) {
+            edFirstName.setError("Enter the Name");
+            edFirstName.requestFocus();
+        } else if (fName.length() < 3) {
+            edFirstName.setError("the name length less than 3");
+            edFirstName.requestFocus();
+        } else if (fName.contains(".") || fName.contains("#") || fName.contains("$") || fName.contains("[") || fName.contains("]")) {
+            edFirstName.setError("must not contain '.', '#', '$', '[', or ']'");
+            edFirstName.requestFocus();
+        } else if (fName.length() > 10) {
+            edFirstName.setError("the name length more than 10");
+            edFirstName.requestFocus();
+
+        }
+
+
+        //last name check
+        else if (lName.isEmpty()) {
+            edLastName.setError("Enter the Name");
+            edLastName.requestFocus();
+        } else if (lName.length() < 3) {
+            edLastName.setError("the name length less than 3");
+            edLastName.requestFocus();
+        } else if (lName.contains(".") || lName.contains("#") || lName.contains("$") || lName.contains("[") || lName.contains("]")) {
+            edLastName.setError("must not contain '.', '#', '$', '[', or ']'");
+            edLastName.requestFocus();
+        }
+
+
+        //email check
+        else if (email.isEmpty()) {
+            edEmail.setError("Enter the Email");
+            edEmail.requestFocus();
+
+        }
+        //mobile check
+        else if (mobile.isEmpty()) {
+            edMobile.setError("Enter the Phone Number");
+            edMobile.requestFocus();
+        }
+        //password check
+        else if (password.isEmpty()) {
+            edPassword.setError("Enter the Password");
+            edPassword.requestFocus();
+        } else if (password.length() < 6) {
+            edPassword.setError("password length less than 6");
+            edPassword.requestFocus();
+
+        }
+        //rewrite password
+        else if (reWritepassword.isEmpty()) {
+            edReWritePassword.setError("Enter the rewrite password");
+            edReWritePassword.requestFocus();
+        } else if (!password.equals(reWritepassword)) {
+            edReWritePassword.setError("password is not equal");
+            edReWritePassword.requestFocus();
+        }
+
+
+        //user kind check
+
+        else if (!rbStudent.isChecked() && !rbAdmin.isChecked()) {
+            Toast.makeText(getBaseContext(), "Select Kind Of User", Toast.LENGTH_LONG).show();
+
+        }
+
+
+        //No wrong detect
+        else {
+            progressBar.setVisibility(View.VISIBLE);
+            // valide the email
+            valideEmail(fName, lName, email, password, reWritepassword,mobile);
+            valideEmailUser(fName, lName, email, password, reWritepassword,mobile);
+        }
+
+
+    }
+    private void  valideEmailUser(String fName, String lName,String  email,String password,String reWritepassword,String mobile){
+        firebaseDatabaseRefrence.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!(snapshot.child(Prevalent.DATA_BASE_NAME_User).child(email).exists())){
+                    HashMap<String, Object> hashMapAdmins = new HashMap<>();
+                    hashMapAdmins.put("firstName",fName);
+                    hashMapAdmins.put("secondName", lName);
+                    hashMapAdmins.put("emailSinUp", email);
+                    hashMapAdmins.put("password", password);
+                    hashMapAdmins.put("re_password", reWritepassword);
+                    hashMapAdmins.put("mobile", mobile);
+                    firebaseDatabaseRefrence.child(Prevalent.DATA_BASE_NAME_User).child(email).updateChildren(hashMapAdmins)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(RegisterActivity.this, "Login successfule", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE);
+                                        startActivity(new Intent(getBaseContext(), MainActivity.class));
+                                        overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                        finish();
+                                    }else {
+                                        Toast.makeText(RegisterActivity.this, "NetWork Error ", Toast.LENGTH_LONG).show();
+                                    }
+
+                                }
+                            });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+    private void  valideEmail(String fName, String lName,String  email,String password,String reWritepassword,String mobile){
+        firebaseDatabaseRefrence.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!(snapshot.child(Prevalent.DATA_BASE_NAME_ADMINS).child(email).exists())){
+                    HashMap<String, Object> hashMapAdmins = new HashMap<>();
+                    hashMapAdmins.put("firstName",fName);
+                    hashMapAdmins.put("secondName", lName);
+                    hashMapAdmins.put("emailSinUp", email);
+                    hashMapAdmins.put("password", password);
+                    hashMapAdmins.put("re_password", reWritepassword);
+                    hashMapAdmins.put("mobile", mobile);
+                    firebaseDatabaseRefrence.child(Prevalent.DATA_BASE_NAME_ADMINS).child(email).updateChildren(hashMapAdmins)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(RegisterActivity.this, "Login successfule", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE);
+                                        startActivity(new Intent(getBaseContext(), AdminActivity.class));
+                                        overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                        finish();
+                                    }else {
+                                        Toast.makeText(RegisterActivity.this, "NetWork Error ", Toast.LENGTH_LONG).show();
+                                    }
+
+                                }
+                            });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 

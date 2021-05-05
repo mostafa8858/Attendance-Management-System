@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar_main);
         userImage = findViewById(R.id.user_image);
 
-        tvStudentName.setText(firebaseUser.getDisplayName());
-        if(userImage!=null) {
+        //tvStudentName.setText(firebaseUser.getDisplayName());
+       /* if(userImage!=null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
-        }
+        }*/
 
 
     }
@@ -73,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tvStudentName.setText(firebaseUser.getDisplayName());
+/*        tvStudentName.setText(firebaseUser.getDisplayName());
         if(userImage!=null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
-        }
+        }*/
     }
 
     public void changeStatusBarColor() {
