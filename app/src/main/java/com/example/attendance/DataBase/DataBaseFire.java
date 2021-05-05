@@ -22,19 +22,32 @@ public class DataBaseFire {
         ArrayList<User.Admin> admins = new ArrayList<>();
 
         firebaseDatabaseReferencee = FirebaseDatabase.getInstance().getReference(User.Admin.ADMIN);
-        firebaseDatabaseReferencee.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User.Admin admin = dataSnapshot.getValue(User.Admin.class);
-                    admins.add(admin);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+System.out.println("before ref"+admins.size());
+//        firebaseDatabaseReferencee.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
+//                if (snapshot.exists()){
+//
+//                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                        User.Admin admin=dataSnapshot.getValue(User.Admin.class);
+//                    admins.add(admin);
+//
+//
+//
+//                }
+//                System.out.println("in ref"+admins.size());
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
+//
+//            }
+//        });
+
         return admins;
+        System.out.println("after ref"+admins.size());
+
     }
 
     public ArrayList<User.Student> getAllStudent(){
@@ -60,6 +73,8 @@ public class DataBaseFire {
     ArrayList<String> getAdminEmail(){
         ArrayList<String> adminEmails=new ArrayList<>();
         firebaseDatabaseReferencee = FirebaseDatabase.getInstance().getReference(User.Admin.ADMIN);
+        System.out.println("before ref"+adminEmails.size());
+
         firebaseDatabaseReferencee.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -69,7 +84,9 @@ public class DataBaseFire {
                 adminEmails.add(admin.getEmail());
 
                 }
-                }
+                System.out.println("in ref"+adminEmails.size());
+
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -80,6 +97,8 @@ public class DataBaseFire {
 
 
 return adminEmails;
+        System.out.println("after ref"+adminEmails.size());
+
     }
 
     ArrayList<String> getStudentEmail(){
