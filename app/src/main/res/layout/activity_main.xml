@@ -84,15 +84,14 @@
                     app:cardMaxElevation="6dp">
 
 
-                    <TextView
-
-                        android:id="@+id/text"
+                    <ImageView
+                        android:src="@drawable/ic_qr_code__1_"
+                        android:id="@+id/scannerStudant"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:drawableTop="@drawable/ic_alarm"
                         android:drawablePadding="5dp"
-
                         android:gravity="center"
                         android:padding="40dp"
                         android:text="TextView"

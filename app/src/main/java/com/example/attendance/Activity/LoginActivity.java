@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.attendance.DataBase.DataBaseFire;
-import com.example.attendance.Domin.User;
 import com.example.attendance.Domin.User_model;
 import com.example.attendance.Prevalent;
 import com.example.attendance.R;
@@ -46,7 +44,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity {
@@ -54,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginButton faceBookLogin;
     private ImageView registerImage;
-    private TextView registertext,userSingIn,adminSignIn;
+    private TextView registertext,userSingIn,adminSignIn,TxtforgetPassword;
     private EditText edEmail, edPassword;
     private Button loginButton;
     private ProgressBar progressBar;
@@ -71,6 +68,13 @@ public class LoginActivity extends AppCompatActivity {
         changeStatusBarColor();
         adminSignIn=findViewById(R.id.adminSignIn);
         userSingIn=findViewById(R.id.userSingIn);
+        TxtforgetPassword=findViewById(R.id.textView_forgetPassword);
+        TxtforgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), MainScreenForGetPassword.class));
+            }
+        });
         adminSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginbutton);
         progressBar = findViewById(R.id.progressBar_login);
 
-        firebaseAuth.signOut();
+       // firebaseAuth.signOut();
 
     }
 
