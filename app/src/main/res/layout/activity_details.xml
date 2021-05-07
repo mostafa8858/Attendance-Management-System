@@ -24,7 +24,8 @@
         android:layout_below="@+id/tool_bar_details"
         android:background="@drawable/image_shape"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_profile" />
+        android:src="@drawable/ic_profile"
+        android:contentDescription="@string/todo" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,9 +45,11 @@
                 android:id="@+id/edit_text_name_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:backgroundTint="@color/white"
                 android:drawableEnd="@drawable/ic_user_name"
                 android:enabled="false"
+                android:inputType="text"
                 android:paddingTop="30dp"
                 android:text="@string/user_name" />
 
@@ -55,9 +58,11 @@
                 android:id="@+id/edit_text_id_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:backgroundTint="@color/white"
                 android:drawableEnd="@drawable/ic_id"
                 android:enabled="false"
+                android:inputType="text"
                 android:paddingTop="30dp"
                 android:text="@string/user_id" />
 
@@ -69,8 +74,10 @@
                 android:backgroundTint="@color/white"
                 android:drawableEnd="@drawable/ic_email"
                 android:enabled="false"
+                android:inputType="text"
                 android:paddingTop="30dp"
-                android:text="@string/login_email_hint" />
+                android:text="@string/login_email_hint"
+                android:importantForAutofill="no" />
 
 
             <EditText
@@ -82,7 +89,8 @@
                 android:enabled="false"
                 android:inputType="numberSigned"
                 android:paddingTop="30dp"
-                android:text="@string/phone_number" />
+                android:text="@string/phone_number"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/edit_text_password_details"
@@ -95,7 +103,7 @@
                 android:paddingTop="30dp"
                 android:text="@string/login_password_hint"
 
-                />
+                android:importantForAutofill="no" />
 
 
         </LinearLayout>
