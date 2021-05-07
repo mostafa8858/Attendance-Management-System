@@ -22,7 +22,7 @@ public class DataBaseFire {
         ArrayList<User.Admin> admins = new ArrayList<>();
 
         firebaseDatabaseReferencee = FirebaseDatabase.getInstance().getReference(User.Admin.ADMIN);
-System.out.println("before ref"+admins.size());
+//System.out.println("before ref"+admins.size());
 //        firebaseDatabaseReferencee.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
@@ -46,7 +46,7 @@ System.out.println("before ref"+admins.size());
 //        });
 
         return admins;
-        System.out.println("after ref"+admins.size());
+
 
     }
 
@@ -84,7 +84,7 @@ System.out.println("before ref"+admins.size());
                 adminEmails.add(admin.getEmail());
 
                 }
-                System.out.println("in ref"+adminEmails.size());
+
 
             }
 
@@ -97,7 +97,7 @@ System.out.println("before ref"+admins.size());
 
 
 return adminEmails;
-        System.out.println("after ref"+adminEmails.size());
+
 
     }
 
