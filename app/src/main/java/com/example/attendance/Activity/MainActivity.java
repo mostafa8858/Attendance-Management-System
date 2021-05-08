@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tvStudentName, tvLogOut;
-    private ImageView userImage;
+    private ImageView userImage,scnnerUser;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private ProgressBar progressBar;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseUser = firebaseAuth.getCurrentUser();
 
-
+        scnnerUser=findViewById(R.id.scannerStudant);
         tvStudentName = findViewById(R.id.user_name);
         tvLogOut = findViewById(R.id.log_out);
         progressBar = findViewById(R.id.progressBar_main);
@@ -47,7 +47,12 @@ public class MainActivity extends AppCompatActivity {
        /* if(userImage!=null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
         }*/
-
+         scnnerUser.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 startActivity(new Intent(getBaseContext(),ScannerStudant.class));
+             }
+         });
 
     }
 
