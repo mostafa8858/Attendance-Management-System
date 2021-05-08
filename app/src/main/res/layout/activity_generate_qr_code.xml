@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.GenerateQrCode">
+
+    <EditText
+        android:id="@+id/edit_text_genrate_qrcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/generate_QR_value" />
+
+    <Button
+        android:id="@+id/button_generate_code"
+        android:background="@drawable/button_background_blue"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_text_genrate_qrcode"
+        android:layout_margin="15dp"
+
+        android:text="@string/generate_QR_code_admin" />
+
+    <Button
+        android:id="@+id/button_auto_generate_code"
+        android:background="@drawable/button_background_blue"
+       android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_generate_code"
+        android:layout_margin="15dp"
+        android:text="@string/auto_generate_QR_code" />
+
+    <ImageView
+        android:id="@+id/imageView_qr_genrate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/button_auto_generate_code"
+
+   android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_qr_code_scan" />
+
+</RelativeLayout>

@@ -12,15 +12,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AdminActivity extends AppCompatActivity {
-TextView tvAdminLogOut;
+TextView tvAdminLogOut,tvGenerateQrCode;
 FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
+
         firebaseAuth=FirebaseAuth.getInstance();
+
+tvGenerateQrCode=findViewById(R.id.generate_QR_code_in_admin)   ;
         tvAdminLogOut = findViewById(R.id.log_out);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+
+
         tvAdminLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,5 +46,12 @@ FirebaseAuth firebaseAuth;
                 finish();
             }
         });
+        tvGenerateQrCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(),GenerateQrCode.class));
+            }
+        });
+
     }
 }

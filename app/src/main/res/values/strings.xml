@@ -12,7 +12,7 @@
     <string name="facebook_app_id">291685792487921</string>
     <string name="fb_login_protocol_scheme">fb291685792487921</string>
     <string name="Attendance">Attendance</string>
-    <string name="generate_QR_code">generate_QR_code</string>
+    <string name="generate_QR_code">generate QR code</string>
     <string name="chat">chat</string>
     <string name="phone_number">Phone Number</string>
     <string name="Edit">Edit</string>
@@ -24,5 +24,8 @@
     <string name="userKind">User Kind</string>
     <string name="user_id">Id</string>
     <string name="todo">TODO</string>
+    <string name="generate_QR_value">Enter Value</string>
+    <string name="generate_QR_code_admin">Generate</string>
+    <string name="auto_generate_QR_code">Auto Generate</string>
 
 </resources>

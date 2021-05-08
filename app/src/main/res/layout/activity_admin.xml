@@ -144,7 +144,7 @@
                     app:cardMaxElevation="6dp">
 
                     <TextView
-                        android:id="@+id/generate_QR_code"
+                        android:id="@+id/generate_QR_code_in_admin"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
