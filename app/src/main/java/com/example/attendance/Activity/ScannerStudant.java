@@ -31,7 +31,7 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
         super.onCreate(savedInstanceState);
         scannerView=new ZXingScannerView(this);
         setContentView(scannerView);
-        databaseReference= FirebaseDatabase.getInstance().getReference(Prevalent.DATA_BASE_NAME_User);
+        databaseReference= FirebaseDatabase.getInstance().getReference("ehab");
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA)
                 .withListener(new PermissionListener() {
                     @Override
@@ -75,16 +75,10 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
     @Override
     protected void onPostResume() {
         super.onPostResume();
+        scannerView.setResultHandler(this);
         scannerView.startCamera();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
 
-    }
 }
