@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_bk_color"
 
-    tools:context=".Activity.MainActivity">
+    tools:context=".Activity.StudentActivity">
 
     <TextView
         android:id="@+id/user_name"

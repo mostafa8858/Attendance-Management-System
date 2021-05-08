@@ -32,8 +32,8 @@
         <activity android:name=".Activity.AdminActivity" />
         <activity
             android:name=".Activity.DetailsActivity"
-            android:parentActivityName=".Activity.MainActivity" />
-        <activity android:name=".Activity.MainActivity" />
+            android:parentActivityName=".Activity.StudentActivity" />
+        <activity android:name=".Activity.StudentActivity" />
         <activity
             android:name=".Activity.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />

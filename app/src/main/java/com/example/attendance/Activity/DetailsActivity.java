@@ -141,7 +141,7 @@ public class DetailsActivity extends AppCompatActivity {
         firebaseUser.updateProfile(userProfileChangeRequest);
         firebaseUser.updateEmail(edEmail.getText().toString());
         firebaseUser.updatePassword(edPassword.getText().toString());
-        startActivity(new Intent(getBaseContext(), MainActivity.class));
+        startActivity(new Intent(getBaseContext(), StudentActivity.class));
         Toast.makeText(getBaseContext(), "Data updated", Toast.LENGTH_LONG).show();
 
     }

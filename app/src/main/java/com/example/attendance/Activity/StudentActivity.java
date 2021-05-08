@@ -19,7 +19,7 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class StudentActivity extends AppCompatActivity {
     private TextView tvStudentName, tvLogOut;
     private ImageView userImage,scnnerUser;
     private FirebaseAuth firebaseAuth;

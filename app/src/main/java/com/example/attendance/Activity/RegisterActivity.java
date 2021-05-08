@@ -10,23 +10,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.attendance.Domin.User;
 import com.example.attendance.Prevalent;
 import com.example.attendance.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -231,7 +226,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     if (task.isSuccessful()){
                                         Toast.makeText(RegisterActivity.this, "Login successfule", Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
-                                        startActivity(new Intent(getBaseContext(), MainActivity.class));
+                                        startActivity(new Intent(getBaseContext(), StudentActivity.class));
                                         overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
                                         finish();
                                     }else {

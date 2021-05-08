@@ -206,7 +206,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user != null) {
             progressBar.setVisibility(View.GONE);
             Toast.makeText(getBaseContext(), "login sucsses", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(getBaseContext(), MainActivity.class));
+            startActivity(new Intent(getBaseContext(), StudentActivity.class));
             finish();
         } else {
             Toast.makeText(this, "please sign to continue", Toast.LENGTH_SHORT).show();
@@ -299,7 +299,7 @@ public class LoginActivity extends AppCompatActivity {
                    if (users_model.getEmailSinUp().equals(email)) {
                        if (users_model.getPassword().equals(password)) {
 
-                           Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                           Intent intent = new Intent(getBaseContext(), StudentActivity.class);
                            startActivity(intent);
 
                            Toast.makeText(LoginActivity.this, "Done Login ", Toast.LENGTH_SHORT).show();
