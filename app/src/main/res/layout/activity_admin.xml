@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.AdminActivity">
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/admin_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcome_text"
@@ -35,7 +35,7 @@
         android:textSize="@dimen/welcome_text_size" />
 
     <ImageView
-        android:id="@+id/user_image"
+        android:id="@+id/admin_image"
         android:layout_width="95dp"
         android:layout_height="75dp"
         android:layout_alignParentTop="true"
@@ -50,7 +50,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/user_image"
+        android:layout_below="@+id/admin_image"
         android:layout_marginTop="20dp">
 
         <LinearLayout

@@ -1,19 +1,24 @@
 package com.example.attendance.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.attendance.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class AdminActivity extends AppCompatActivity {
-TextView tvAdminLogOut,tvGenerateQrCode;
-FirebaseAuth firebaseAuth;
+    private TextView tvAdminLogOut, tvGenerateQrCode, tvAdminName;
+    private ImageView imAdminDetails;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,18 +26,20 @@ FirebaseAuth firebaseAuth;
         setContentView(R.layout.activity_admin);
 
 
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
-tvGenerateQrCode=findViewById(R.id.generate_QR_code_in_admin)   ;
+        tvAdminName = findViewById(R.id.admin_name);
+        tvGenerateQrCode = findViewById(R.id.generate_QR_code_in_admin);
         tvAdminLogOut = findViewById(R.id.log_out);
+        imAdminDetails=findViewById(R.id.admin_image);
 
+        tvAdminName.setText(firebaseUser.getDisplayName());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-
 
 
         tvAdminLogOut.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +56,14 @@ tvGenerateQrCode=findViewById(R.id.generate_QR_code_in_admin)   ;
         tvGenerateQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(),GenerateQrCode.class));
+                startActivity(new Intent(getBaseContext(), GenerateQrCode.class));
+            }
+        });
+        imAdminDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), DetailsActivity.class));
+                overridePendingTransition(R.anim.slide_up, R.anim.stay);
             }
         });
 

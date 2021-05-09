@@ -20,7 +20,12 @@ public class User {
             this.phoneNumber = phoneNumber;
             this.password = password;
             this.image = image;
+
+
         }
+
+
+
 
         public String getId() {
             return id;
@@ -98,7 +103,9 @@ public class User {
             this.fingerPrint = fingerPrint;
             this.grade = grade;
             this.image = image;
+
         }
+
 
         public String getId() {
             return id;

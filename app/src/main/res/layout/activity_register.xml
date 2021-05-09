@@ -155,22 +155,29 @@
                         android:orientation="horizontal">
 
 
-                        <TextView
-                            android:id="@+id/radioButtonAdmin"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="@string/admin" />
+                            android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/radioButtonStudent"
-                            android:layout_width="79dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="5dp"
-                            android:text="@string/Student"
-                            android:visibility="invisible" />
+                            <RadioButton
+                                android:id="@+id/radioButtonAdmin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:layout_weight="1"
+                                android:text="@string/admin" />
+
+                            <RadioButton
+                                android:id="@+id/radioButtonStudent"
+                                android:layout_width="79dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="1"
+                                android:text="@string/Student" />
+
+                        </RadioGroup>
 
 
                     </LinearLayout>
