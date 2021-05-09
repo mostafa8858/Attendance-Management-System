@@ -120,7 +120,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
-//    private void insertNewUserRealTime() {
+
+    //    private void insertNewUserRealTime() {
 //
 //        String fName, lName, email, password, mobile, reWritepassword, userKind;
 //        fName = edFirstName.getText().toString();
@@ -422,7 +423,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void insertNewUser() {
-        if(checkFields()){
+        if (checkFields()) {
             progressBar.setVisibility(View.VISIBLE);
 
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -441,7 +442,7 @@ public class RegisterActivity extends AppCompatActivity {
                             insertNewAdmin();
                         } else {
                             //user
-                        insertNewStudent();
+                            insertNewStudent();
                         }
                     } else {
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
