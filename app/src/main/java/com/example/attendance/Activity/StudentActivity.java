@@ -13,15 +13,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.attendance.DataBase.DataBaseFire;
 import com.example.attendance.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class StudentActivity extends AppCompatActivity {
-    private TextView tvStudentName, tvLogOut;
-    private ImageView userImage,scnnerUser;
+    private TextView tvStudentName, tvLogOut,tvScanQr;
+    private ImageView userImage;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private ProgressBar progressBar;
@@ -29,7 +28,7 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_student);
 
 
         changeStatusBarColor();
@@ -37,17 +36,17 @@ public class StudentActivity extends AppCompatActivity {
 
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        scnnerUser=findViewById(R.id.scannerStudant);
-        tvStudentName = findViewById(R.id.user_name);
+        tvScanQr=findViewById(R.id.tv_scan_qr);
+        tvStudentName = findViewById(R.id.admin_name);
         tvLogOut = findViewById(R.id.log_out);
         progressBar = findViewById(R.id.progressBar_main);
-        userImage = findViewById(R.id.user_image);
+        userImage = findViewById(R.id.admin_image);
 
-        //tvStudentName.setText(firebaseUser.getDisplayName());
-       /* if(userImage!=null) {
+        tvStudentName.setText(firebaseUser.getDisplayName());
+       if(userImage!=null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
-        }*/
-         scnnerUser.setOnClickListener(new View.OnClickListener() {
+        }
+         tvScanQr.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  startActivity(new Intent(getBaseContext(),ScannerStudant.class));
@@ -78,10 +77,10 @@ public class StudentActivity extends AppCompatActivity {
             }
         });
 
-/*        tvStudentName.setText(firebaseUser.getDisplayName());
+        tvStudentName.setText(firebaseUser.getDisplayName());
         if(userImage!=null) {
             userImage.setImageURI(firebaseUser.getPhotoUrl());
-        }*/
+        }
     }
 
     public void changeStatusBarColor() {

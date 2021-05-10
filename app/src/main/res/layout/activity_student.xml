@@ -9,7 +9,7 @@
     tools:context=".Activity.StudentActivity">
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/admin_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcome_text"
@@ -37,7 +37,7 @@
         android:textSize="@dimen/welcome_text_size" />
 
     <ImageView
-        android:id="@+id/user_image"
+        android:id="@+id/admin_image"
         android:layout_width="95dp"
         android:layout_height="75dp"
         android:layout_alignParentTop="true"
@@ -52,7 +52,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/user_image"
+        android:layout_below="@+id/admin_image"
         android:layout_marginTop="20dp">
 
         <LinearLayout
@@ -84,18 +84,20 @@
                     app:cardMaxElevation="6dp">
 
 
-                    <ImageView
-                        android:src="@drawable/ic_qr_code__1_"
-                        android:id="@+id/scannerStudant"
+                    <TextView
+
+                        android:id="@+id/tv_scan_qr"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:drawableTop="@drawable/ic_alarm"
-                        android:drawablePadding="5dp"
+                        android:drawableTop="@drawable/ic_qr_code__1_"
+                        android:drawablePadding="9dp"
                         android:gravity="center"
                         android:padding="40dp"
-                        android:text="TextView"
+                        android:text="Scan qr Code"
                         android:textSize="14sp" />
+
+
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -250,10 +252,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/kind_of_user"
+                android:layout_alignParentBottom="true"
                 android:gravity="center"
-                android:textSize="@dimen/welcome_text_size"
-                android:layout_alignParentBottom="true"/>
+                android:text="@string/kind_of_user_student"
+                android:textSize="@dimen/welcome_text_size" />
 
         </LinearLayout>
 
