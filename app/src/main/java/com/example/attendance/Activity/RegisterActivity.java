@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         rbAdmin = findViewById(R.id.radioButtonAdmin);
         rbStudent = findViewById(R.id.radioButtonStudent);
         progressBar = findViewById(R.id.progressBar_register);
-<<<<<<< HEAD
+
         rbAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                 insertNewUserRealTime();
             }
         });
-=======
+
 //        rbAdmin.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -116,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                 Prevalent.DATA_BASE_NAME_ADMINS="Users";
 //             }
 //         });
->>>>>>> 8c2a6f6a680348e32d2b507c3c2ea501a8db22f0
+
     }
 
     @Override

@@ -63,11 +63,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         changeStatusBarColor();
-<<<<<<< HEAD
-        adminSignIn=findViewById(R.id.adminSignIn);
-        userSingIn=findViewById(R.id.userSingIn);
-        TxtforgetPassword=findViewById(R.id.textView_forgetPassword);
-        TxtforgetPassword.setOnClickListener(new View.OnClickListener() {
+
+     /*  // adminSignIn=findViewById(R.id.adminSignIn);
+        //userSingIn=findViewById(R.id.userSingIn);
+        //TxtforgetPassword=findViewById(R.id.textView_forgetPassword);
+        //TxtforgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), MainScreenForGetPassword.class));
@@ -90,11 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                 userSingIn.setVisibility(v.INVISIBLE);
                 Prevalent.DATA_BASE_NAME_User="Users";
             }
-        });
-=======
+        });*/
 
-
->>>>>>> 8c2a6f6a680348e32d2b507c3c2ea501a8db22f0
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
