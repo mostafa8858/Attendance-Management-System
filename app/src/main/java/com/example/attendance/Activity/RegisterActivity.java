@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                  registerButton.setText("Register Admin");
                  rbAdmin.setVisibility(v.VISIBLE);
                  rbStudent.setVisibility(v.INVISIBLE);
-                 Prevalent.DATA_BASE_NAME_ADMINS="Users";
+                 Prevalent.DATA_BASE_NAME_User="Users";
              }
          });
         registerButton.setOnClickListener(new View.OnClickListener() {

@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginButton.setText("Login Admin ");
                 adminSignIn.setVisibility(v.INVISIBLE);
                 userSingIn.setVisibility(v.VISIBLE);
-                Prevalent.DATA_BASE_NAME_User="Users";
+                Prevalent.DATA_BASE_NAME_ADMINS="Admins";
             }
         });
         userSingIn.setOnClickListener(new View.OnClickListener() {
