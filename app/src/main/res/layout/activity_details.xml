@@ -20,8 +20,9 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_marginTop="10dp"
         android:id="@+id/image_in_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/tool_bar_details"
 app:civ_border_width="4dp"
 app:civ_border_color="@color/register_bk_color"

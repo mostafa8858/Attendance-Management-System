@@ -71,35 +71,17 @@ public class RegisterActivity extends AppCompatActivity {
         rbStudent = findViewById(R.id.radioButtonStudent);
         progressBar = findViewById(R.id.progressBar_register);
 
-        rbAdmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerButton.setText("Register Admin");
-                rbAdmin.setVisibility(v.INVISIBLE);
-                rbStudent.setVisibility(v.VISIBLE);
-                Prevalent.DATA_BASE_NAME_ADMINS="Admins";
 
-            }
-        });
-         rbStudent.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 registerButton.setText("Register Admin");
-                 rbAdmin.setVisibility(v.VISIBLE);
-                 rbStudent.setVisibility(v.INVISIBLE);
-                 Prevalent.DATA_BASE_NAME_User="Users";
-             }
-         });
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
+
                  insertNewUser();
 //                insertNewUserRealTime();
-=======
+
                 // insertNewUser();
               //  insertNewUserRealTime();
->>>>>>> a4afea4d2de3b12d7c677f912f49fe595277b6c5
+
             }
         });
 

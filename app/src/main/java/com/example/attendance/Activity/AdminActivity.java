@@ -27,12 +27,11 @@ public class AdminActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-changeStatusBarColor();
+        changeStatusBarColor();
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();

@@ -17,15 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
+
         <activity android:name=".RoomsActivity"></activity>
-        <activity
-            android:name=".Activity.GenerateQrCode"
-            android:parentActivityName=".Activity.AdminActivity" />
-=======
-        <activity android:name=".Activity.WeeksAct"></activity>
         <activity android:name=".Activity.GenerateQrCode" />
->>>>>>> a4afea4d2de3b12d7c677f912f49fe595277b6c5
+
+
         <activity android:name=".Activity.ScannerStudant" />
         <activity android:name=".Activity.SplachActivity">
             <intent-filter>
