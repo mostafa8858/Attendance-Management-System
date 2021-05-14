@@ -93,8 +93,13 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                  insertNewUser();
 //                insertNewUserRealTime();
+=======
+                // insertNewUser();
+              //  insertNewUserRealTime();
+>>>>>>> a4afea4d2de3b12d7c677f912f49fe595277b6c5
             }
         });
 
