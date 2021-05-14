@@ -20,6 +20,8 @@ public class AdminActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +34,10 @@ public class AdminActivity extends AppCompatActivity {
         tvAdminName = findViewById(R.id.admin_name);
         tvGenerateQrCode = findViewById(R.id.generate_QR_code_in_admin);
         tvAdminLogOut = findViewById(R.id.log_out);
-        imAdminDetails=findViewById(R.id.admin_image);
+        imAdminDetails = findViewById(R.id.admin_image);
 
         tvAdminName.setText(firebaseUser.getDisplayName());
+
     }
 
     @Override
@@ -53,6 +56,7 @@ public class AdminActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         tvGenerateQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

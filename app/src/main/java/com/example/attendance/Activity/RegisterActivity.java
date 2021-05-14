@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.attendance.Domin.User;
+import com.example.attendance.Prevalent;
 import com.example.attendance.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -93,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // insertNewUser();
-                insertNewUserRealTime();
+              //  insertNewUserRealTime();
             }
         });
 
