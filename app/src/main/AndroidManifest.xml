@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.GenerateQrCode"></activity>
         <activity android:name=".Activity.ScannerStudant" />
-        <activity android:name=".Activity.Splach">
+        <activity android:name=".Activity.SplachActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +32,8 @@
         <activity android:name=".Activity.AdminActivity" />
         <activity
             android:name=".Activity.DetailsActivity"
-            android:parentActivityName=".Activity.StudentActivity" />
+            android:parentActivityName=".Activity.StudentActivity"
+            />
         <activity android:name=".Activity.StudentActivity" />
         <activity
             android:name=".Activity.RegisterActivity"

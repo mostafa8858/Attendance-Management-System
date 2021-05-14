@@ -5,7 +5,7 @@ import android.net.Uri;
 public class User {
     public static class Admin {
 
-        public final static String ADMIN = "Admin";
+        public final static String ADMIN = "com/example/attendance/Activity/AdminPackge";
         private String firstName, lastName, email, phoneNumber, password,id;
         private Uri image;
 

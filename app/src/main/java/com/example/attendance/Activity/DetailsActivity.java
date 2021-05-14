@@ -22,10 +22,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.attendance.Domin.User;
 import com.example.attendance.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DetailsActivity extends AppCompatActivity {
     private static final int IMAGE_REQUEST_CODE = 15;
@@ -36,6 +41,8 @@ public class DetailsActivity extends AppCompatActivity {
     private Uri userImageUri;
     private Menu menu;
     private ActionBar actionBar;
+    private  DocumentReference documentReference;
+    private FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,12 @@ public class DetailsActivity extends AppCompatActivity {
         changeStatusBarColor();
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseFirestore=FirebaseFirestore.getInstance();
+        documentReference=firebaseFirestore.collection("User").document(firebaseUser.getUid());
+
+
+
+
 
         toolbar = findViewById(R.id.tool_bar_details);
         setSupportActionBar(toolbar);
@@ -59,11 +72,13 @@ public class DetailsActivity extends AppCompatActivity {
         userImage = findViewById(R.id.image_in_details);
 
 
+
+
         actionBar.setTitle(firebaseUser.getDisplayName());
         toolbar.setTitle(firebaseUser.getDisplayName());
 
 
-
+        
         edName.setText(firebaseUser.getDisplayName());
         edEmail.setText(firebaseUser.getEmail());
         edPhone.setText(firebaseUser.getPhoneNumber());
@@ -163,13 +178,8 @@ public class DetailsActivity extends AppCompatActivity {
         edid.setEnabled(true);
     }
 
-    public void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
-        }
-    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -179,6 +189,14 @@ public class DetailsActivity extends AppCompatActivity {
             userImageUri = data.getData();
             userImage.setImageURI(userImageUri);
 
+        }
+    }
+
+    public void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
         }
     }
 
