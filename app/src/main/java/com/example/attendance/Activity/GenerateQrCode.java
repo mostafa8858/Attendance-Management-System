@@ -22,14 +22,15 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
 public class GenerateQrCode extends AppCompatActivity {
-    EditText edGenerateCode;
-    Button btGenerate, btAutoGenerate;
-    ImageView ivQrCode;
+   private EditText edGenerateCode;
+   private Button btGenerate, btAutoGenerate;
+    private ImageView ivQrCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_qr_code);
+
 
         edGenerateCode = findViewById(R.id.edit_text_genrate_qrcode);
         btGenerate = findViewById(R.id.button_generate_code);

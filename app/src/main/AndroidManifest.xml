@@ -17,7 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.GenerateQrCode"></activity>
+        <activity android:name=".RoomsActivity"></activity>
+        <activity
+            android:name=".Activity.GenerateQrCode"
+            android:parentActivityName=".Activity.AdminActivity" />
         <activity android:name=".Activity.ScannerStudant" />
         <activity android:name=".Activity.SplachActivity">
             <intent-filter>
@@ -32,8 +35,7 @@
         <activity android:name=".Activity.AdminActivity" />
         <activity
             android:name=".Activity.DetailsActivity"
-            android:parentActivityName=".Activity.StudentActivity"
-            />
+            android:parentActivityName=".Activity.StudentActivity" />
         <activity android:name=".Activity.StudentActivity" />
         <activity
             android:name=".Activity.RegisterActivity"
