@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/room_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_room_image" />
+
+    <EditText
+        android:id="@+id/editTextRoomTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Weeks Number"
+        android:inputType="textPersonName"
+        android:textSize="20sp" />
+</LinearLayout>

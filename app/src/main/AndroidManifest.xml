@@ -17,21 +17,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.StudentRoomActivity"></activity>
+        <activity android:name=".Activity.WeeksActivity"></activity>
+        <activity android:name=".Activity.StudentRoomActivity" />
         <activity android:name=".Activity.AdminRoomActivity" />
         <activity android:name=".Activity.GenerateQrCode" />
         <activity android:name=".Activity.ScannerStudant" />
-        <activity android:name=".Activity.SplachActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Activity.SplachActivity"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
         <activity android:name=".Activity.MainScreenForGetPassword" />
         <activity android:name=".Activity.ForgetPasswordByEmail" />
         <activity android:name=".Activity.ForgetPasswordByNumber" />
-        <activity android:name=".Activity.AdminActivity" />
+        <activity android:name=".Activity.AdminActivity">
+
+        </activity>
         <activity
             android:name=".Activity.DetailsActivity"
             android:parentActivityName=".Activity.StudentActivity" />
