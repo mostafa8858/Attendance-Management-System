@@ -18,7 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.attendance.AdminRoomActivity;
 import com.example.attendance.R;
+import com.example.attendance.StudentRoomActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -294,7 +296,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
                     // is admin
-                    startActivity(new Intent(getBaseContext(), AdminActivity.class));
+                    startActivity(new Intent(getBaseContext(), AdminRoomActivity.class));
 
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(getBaseContext(), "login success", Toast.LENGTH_LONG).show();
@@ -303,7 +305,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
 
                     //is student
-                    startActivity(new Intent(getBaseContext(), StudentActivity.class));
+                    startActivity(new Intent(getBaseContext(), StudentRoomActivity.class));
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(getBaseContext(), "login success", Toast.LENGTH_LONG).show();
                     Toast.makeText(getBaseContext(), "you are student", Toast.LENGTH_LONG).show();

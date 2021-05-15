@@ -284,11 +284,13 @@ public class RegisterActivity extends AppCompatActivity {
                         if (rbAdmin.isChecked()) {
                             // admin
                             insertNewAdmin();
-                            insertUserInFireStore();
+                            //insertUserInFireStore();
                         } else {
                             //user
                             insertNewStudent();
-                            insertUserInFireStore();
+
+
+                            //insertUserInFireStore();
                         }
                     } else {
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
@@ -343,20 +345,20 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-    void insertUserInFireStore(){
-        if (rbAdmin.isChecked()){
-            User.Admin user = new User.Admin(fName, lName, email, mobile, password, null, null);
-            DocumentReference documentReference = firebaseFirestore.collection("User").document(firebaseUser.getUid());
-            documentReference.set(user);
-        }
-        else {
-            User.Student user = new User.Student(fName, lName, email, mobile, password, null, null, null, null);
-            DocumentReference documentReference = firebaseFirestore.collection("User").document(firebaseUser.getUid());
-            documentReference.set(user);
-        }
-
-
-    }
+//    void insertUserInFireStore(){
+//        if (rbAdmin.isChecked()){
+//            User.Admin user = new User.Admin(fName, lName, email, mobile, password, null, null);
+//            DocumentReference documentReference = firebaseFirestore.collection("User").document(firebaseUser.getUid());
+//            documentReference.set(user);
+//        }
+//        else {
+//            User.Student user = new User.Student(fName, lName, email, mobile, password, null, null, null, null);
+//            DocumentReference documentReference = firebaseFirestore.collection("User").document(firebaseUser.getUid());
+//            documentReference.set(user);
+//        }
+//
+//
+//    }
     public void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

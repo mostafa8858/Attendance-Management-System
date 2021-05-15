@@ -2,13 +2,15 @@ package com.example.attendance.Domin;
 
 import android.net.Uri;
 
+import java.util.ArrayList;
+
 public class User {
     public static class Admin {
 
         public final static String ADMIN = "com/example/attendance/Activity/AdminPackge";
         private String firstName, lastName, email, phoneNumber, password,id;
         private Uri image;
-
+private ArrayList<Room> rooms;
         public Admin() {
         }
 
@@ -25,7 +27,13 @@ public class User {
         }
 
 
+        public ArrayList<Room> getRooms() {
+            return rooms;
+        }
 
+        public void setRooms(ArrayList<Room> rooms) {
+            this.rooms = rooms;
+        }
 
         public String getId() {
             return id;
