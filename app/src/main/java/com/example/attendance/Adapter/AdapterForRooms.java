@@ -10,20 +10,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attendance.Domin.Room;
 import com.example.attendance.R;
+import com.example.attendance.RecyclerViewOnClickListener;
 
 import java.util.ArrayList;
 
 public class AdapterForRooms extends RecyclerView.Adapter<AdapterForRooms.RoomHolder> {
 
     private ArrayList<Room> rooms;
+    private RecyclerViewOnClickListener recyclerViewOnClickListener;
 
-    public AdapterForRooms(ArrayList<Room> rooms) {
+    public AdapterForRooms(ArrayList<Room> rooms,RecyclerViewOnClickListener recyclerViewOnClickListener) {
         this.rooms = rooms;
+        this.recyclerViewOnClickListener=recyclerViewOnClickListener;
     }
 
     public void updateData(ArrayList<Room> rooms) {
-      this.  rooms.clear();
-        this.rooms=rooms;
+        this.rooms.clear();
+        this.rooms = rooms;
     }
 
     @Override
@@ -43,6 +46,7 @@ public class AdapterForRooms extends RecyclerView.Adapter<AdapterForRooms.RoomHo
         }
 
         holder.textView.setText(room.getRoomTitle());
+        holder.room=rooms.get(position);
 
 
     }
@@ -55,11 +59,19 @@ public class AdapterForRooms extends RecyclerView.Adapter<AdapterForRooms.RoomHo
     public class RoomHolder extends RecyclerView.ViewHolder {
         TextView textView;
         ImageView imageView;
+        Room room;
 
         public RoomHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.text_in_custom_room);
             imageView = itemView.findViewById(R.id.image_in_custom_room);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    recyclerViewOnClickListener.onClick(room);
+                }
+            });
         }
     }
 }

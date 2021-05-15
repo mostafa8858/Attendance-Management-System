@@ -250,11 +250,13 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_room_title_student"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/baloo"
                 android:layout_alignParentBottom="true"
                 android:gravity="center"
-                android:text="@string/kind_of_user_student"
+                android:text="@string/roomTitle"
                 android:textSize="@dimen/welcome_text_size" />
 
         </LinearLayout>

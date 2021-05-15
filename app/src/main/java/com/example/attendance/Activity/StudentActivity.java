@@ -22,11 +22,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class StudentActivity extends AppCompatActivity {
-    private TextView tvStudentName, tvLogOut,tvScanQr;
+    private TextView tvStudentName, tvLogOut,tvScanQr,tvRoomTitle;
     private ImageView userImage;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private ProgressBar progressBar;
+    private Intent data;
+    private String roomId, roomTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class StudentActivity extends AppCompatActivity {
         tvLogOut = findViewById(R.id.log_out);
         progressBar = findViewById(R.id.progressBar_main);
         userImage = findViewById(R.id.admin_image);
+        tvRoomTitle=findViewById(R.id.tv_room_title_student);
 
         tvStudentName.setText(firebaseUser.getDisplayName());
        if(userImage!=null) {
@@ -55,6 +58,16 @@ public class StudentActivity extends AppCompatActivity {
                  startActivity(new Intent(getBaseContext(), ScannerStudant.class));
              }
          });
+
+
+        data = getIntent();
+        roomId=data.getStringExtra(StudentRoomActivity.ROOM_ID);
+        roomTitle=data.getStringExtra(StudentRoomActivity.ROOM_TITLE);
+
+
+        tvRoomTitle.setText(roomTitle);
+
+
 
     }
 

@@ -28,5 +28,6 @@
     <string name="generate_QR_code_admin">Generate</string>
     <string name="auto_generate_QR_code">Auto Generate</string>
     <string name="kind_of_user_student">You Are Student</string>
+    <string name="roomTitle">Room Title</string>
 
 </resources>

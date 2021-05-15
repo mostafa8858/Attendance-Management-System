@@ -248,10 +248,12 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_room_title_admin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/kind_of_user"
+                android:text="@string/roomTitle"
                 android:gravity="center"
+                android:fontFamily="@font/baloo"
                 android:textSize="@dimen/welcome_text_size"
                 android:layout_alignParentBottom="true"/>
 

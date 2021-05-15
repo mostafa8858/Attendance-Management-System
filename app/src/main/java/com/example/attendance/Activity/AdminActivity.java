@@ -21,10 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AdminActivity extends AppCompatActivity {
-    private TextView tvAdminLogOut, tvGenerateQrCode, tvAdminName;
+    private TextView tvAdminLogOut, tvGenerateQrCode, tvAdminName,tvRoomTitle;
     private ImageView imAdminDetails;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+    private Intent data;
+    private String roomId, roomTitle;
 
 
     @Override
@@ -40,8 +42,17 @@ public class AdminActivity extends AppCompatActivity {
         tvGenerateQrCode = findViewById(R.id.generate_QR_code_in_admin);
         tvAdminLogOut = findViewById(R.id.log_out);
         imAdminDetails = findViewById(R.id.admin_image);
+        tvRoomTitle=findViewById(R.id.tv_room_title_admin);
 
         tvAdminName.setText(firebaseUser.getDisplayName());
+
+
+        data = getIntent();
+        roomId=data.getStringExtra(AdminRoomActivity.ROOM_ID);
+        roomTitle=data.getStringExtra(AdminRoomActivity.ROOM_TITLE);
+
+
+        tvRoomTitle.setText(roomTitle);
 
     }
 

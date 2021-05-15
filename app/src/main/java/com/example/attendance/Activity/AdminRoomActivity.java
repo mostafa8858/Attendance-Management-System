@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import com.example.attendance.Adapter.AdapterForRooms;
 import com.example.attendance.Domin.Room;
 import com.example.attendance.R;
+import com.example.attendance.RecyclerViewOnClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,6 +37,8 @@ import java.util.ArrayList;
 
 public class AdminRoomActivity extends AppCompatActivity {
     private static final int IMAGE_REQEST_CODE = 102;
+    public static final String ROOM_TITLE = "roomTitle";
+    public static final String ROOM_ID = "roomId";
     private FloatingActionButton bnCreateRoom;
     private Toolbar toolbar;
     private RecyclerView recyclerView;
@@ -72,7 +75,20 @@ public class AdminRoomActivity extends AppCompatActivity {
 
 
         rooms = new ArrayList<>();
-        adapterForAdminRooms = new AdapterForRooms(rooms);
+        adapterForAdminRooms = new AdapterForRooms(rooms, new RecyclerViewOnClickListener() {
+            @Override
+            public void onClick(Room room) {
+
+                String roomTitle, roomId;
+                roomTitle = room.getRoomTitle();
+                roomId = room.getId();
+                Intent intent = new Intent(getBaseContext(), AdminActivity.class);
+                intent.putExtra(ROOM_TITLE, roomTitle);
+                intent.putExtra(ROOM_ID, roomId);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+            }
+        });
         RecyclerView.LayoutManager manager = new GridLayoutManager(this, 2);
         recyclerView.setAdapter(adapterForAdminRooms);
         recyclerView.setLayoutManager(manager);
