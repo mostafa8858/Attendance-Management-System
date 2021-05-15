@@ -1,10 +1,10 @@
-package com.example.attendance;
+package com.example.attendance.Activity;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,16 +13,16 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 
+import com.example.attendance.Adapter.AdapterForAdminRooms;
 import com.example.attendance.Domin.Room;
+import com.example.attendance.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,12 +40,12 @@ public class AdminRoomActivity extends AppCompatActivity {
     private FloatingActionButton bnCreateRoom;
     private Toolbar toolbar;
     private RecyclerView recyclerView;
-    private DatabaseReference databaseReferenceForRoom, databaseReferenceForAdmin;
+    private DatabaseReference databaseReference;
     private EditText etRoomTitle;
     private FirebaseUser firebaseUser;
     private ImageView ivroom;
     private Uri imageUri;
-    private View dialogView;
+    private ViewGroup dialogView;
     private ArrayList<Room> rooms;
     private AdapterForAdminRooms adapterForAdminRooms;
 
@@ -54,43 +54,44 @@ public class AdminRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_room);
+
+
         toolbar = findViewById(R.id.toolbar_in_admin_room);
         setSupportActionBar(toolbar);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReferenceForRoom = FirebaseDatabase.getInstance().getReference("Rooms");
-        databaseReferenceForAdmin = FirebaseDatabase.getInstance().getReference("Admin");
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
 
         bnCreateRoom = findViewById(R.id.floatingActionButtonCreateRoom);
         recyclerView = findViewById(R.id.recycler_view_in_admin_room);
 
 
-        dialogView = LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_dialog, null, false);
+        dialogView = (ViewGroup) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_dialog, null, false);
         ivroom = dialogView.findViewById(R.id.room_image);
         etRoomTitle = dialogView.findViewById(R.id.editTextRoomTitle);
 
 
         rooms = new ArrayList<>();
         adapterForAdminRooms = new AdapterForAdminRooms(rooms);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager manager = new GridLayoutManager(this, 2);
         recyclerView.setAdapter(adapterForAdminRooms);
         recyclerView.setLayoutManager(manager);
 
 
-       String adminName= firebaseUser.getDisplayName();
-       String adminUid=firebaseUser.getUid();
+        String adminUid = firebaseUser.getUid();
 
-
-        databaseReferenceForAdmin.getDatabase().getReference("Admin").child(adminName + "  " + adminUid);
-        databaseReferenceForAdmin.addValueEventListener(new ValueEventListener() {
+        databaseReference.getDatabase().getReference("Admin").child(adminUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+
+                adapterForAdminRooms.updateData(rooms);
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Room room = dataSnapshot.getValue(Room.class);
                     rooms.add(room);
+
                 }
                 recyclerView.setAdapter(adapterForAdminRooms);
-
             }
 
             @Override
@@ -121,19 +122,22 @@ public class AdminRoomActivity extends AppCompatActivity {
                 alertDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        databaseReferenceForAdmin.getDatabase().getReference("Admin");
-                        databaseReferenceForRoom.getDatabase().getReference("Rooms");
 
                         String roomTitle = etRoomTitle.getText().toString();
                         String adminName = firebaseUser.getDisplayName();
-                        String roomId = databaseReferenceForRoom.push().getKey();
+                        String roomId = databaseReference.push().getKey();
                         String adminUid = firebaseUser.getUid();
+
 
                         Room room = new Room(roomTitle, imageUri, null, adminName, roomId);
 
-                        databaseReferenceForRoom.child(roomTitle + "  " + roomId).setValue(room);
 
-                        databaseReferenceForAdmin.child(adminName + "  " + adminUid).child(roomId).setValue(room);
+                        databaseReference = FirebaseDatabase.getInstance().getReference("Admin").child(adminUid).child(roomId);
+                        databaseReference.setValue(room);
+
+
+                        databaseReference = FirebaseDatabase.getInstance().getReference("Rooms").child(roomId);
+                        databaseReference.setValue(room);
 
 
                     }
@@ -142,7 +146,12 @@ public class AdminRoomActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
-                }).show();
+                });
+                try {
+                    alertDialog.show();
+                } catch (Exception e) {
+                    System.out.println("aaaaaaaaaaaaaaaaa   " + e.getMessage());
+                }
 
             }
         });

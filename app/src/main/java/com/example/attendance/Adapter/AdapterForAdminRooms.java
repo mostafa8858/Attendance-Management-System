@@ -1,6 +1,5 @@
-package com.example.attendance;
+package com.example.attendance.Adapter;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attendance.Domin.Room;
+import com.example.attendance.R;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,11 @@ public class AdapterForAdminRooms extends RecyclerView.Adapter<AdapterForAdminRo
 
     public AdapterForAdminRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
+    }
 
+    public void updateData(ArrayList<Room> rooms) {
+      this.  rooms.clear();
+        this.rooms=rooms;
     }
 
     @Override
@@ -34,12 +38,11 @@ public class AdapterForAdminRooms extends RecyclerView.Adapter<AdapterForAdminRo
 
         Room room = rooms.get(position);
 
-        if (room.getRoomImageUri() != null)
-        {
-holder.imageView.setImageURI(room.getRoomImageUri());
+        if (room.getRoomImageUri() != null) {
+            holder.imageView.setImageURI(room.getRoomImageUri());
         }
 
-  holder.textView.setText(room.getRoomTitle());
+        holder.textView.setText(room.getRoomTitle());
 
 
     }
