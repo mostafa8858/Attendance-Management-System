@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
@@ -20,7 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 
-import com.example.attendance.Adapter.AdapterForAdminRooms;
+import com.example.attendance.Adapter.AdapterForRooms;
 import com.example.attendance.Domin.Room;
 import com.example.attendance.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -47,7 +46,7 @@ public class AdminRoomActivity extends AppCompatActivity {
     private Uri imageUri;
     private ViewGroup dialogView;
     private ArrayList<Room> rooms;
-    private AdapterForAdminRooms adapterForAdminRooms;
+    private AdapterForRooms adapterForAdminRooms;
 
 
     @Override
@@ -73,7 +72,7 @@ public class AdminRoomActivity extends AppCompatActivity {
 
 
         rooms = new ArrayList<>();
-        adapterForAdminRooms = new AdapterForAdminRooms(rooms);
+        adapterForAdminRooms = new AdapterForRooms(rooms);
         RecyclerView.LayoutManager manager = new GridLayoutManager(this, 2);
         recyclerView.setAdapter(adapterForAdminRooms);
         recyclerView.setLayoutManager(manager);

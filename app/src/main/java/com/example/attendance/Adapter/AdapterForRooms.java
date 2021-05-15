@@ -13,11 +13,11 @@ import com.example.attendance.R;
 
 import java.util.ArrayList;
 
-public class AdapterForAdminRooms extends RecyclerView.Adapter<AdapterForAdminRooms.RoomHolder> {
+public class AdapterForRooms extends RecyclerView.Adapter<AdapterForRooms.RoomHolder> {
 
     private ArrayList<Room> rooms;
 
-    public AdapterForAdminRooms(ArrayList<Room> rooms) {
+    public AdapterForRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
     }
 
@@ -34,7 +34,7 @@ public class AdapterForAdminRooms extends RecyclerView.Adapter<AdapterForAdminRo
     }
 
     @Override
-    public void onBindViewHolder(AdapterForAdminRooms.RoomHolder holder, int position) {
+    public void onBindViewHolder(AdapterForRooms.RoomHolder holder, int position) {
 
         Room room = rooms.get(position);
 

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.attendance.Adapter.AdapterForAdminRooms;
+import com.example.attendance.Adapter.AdapterForRooms;
 import com.example.attendance.Domin.Room;
 import com.example.attendance.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +26,7 @@ public class StudentRoomActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     private ArrayList<Room> rooms;
-    private AdapterForAdminRooms adapterForAdminRooms;
+    private AdapterForRooms adapterForAdminRooms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class StudentRoomActivity extends AppCompatActivity {
 
 
         rooms = new ArrayList<>();
-        adapterForAdminRooms = new AdapterForAdminRooms(rooms);
+        adapterForAdminRooms = new AdapterForRooms(rooms);
         RecyclerView.LayoutManager manager = new GridLayoutManager(this, 2);
         recyclerView.setAdapter(adapterForAdminRooms);
         recyclerView.setLayoutManager(manager);
