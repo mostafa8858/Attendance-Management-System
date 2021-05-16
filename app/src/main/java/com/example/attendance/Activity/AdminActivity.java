@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.attendance.Activity.DetailsActivity;
 import com.example.attendance.Activity.GenerateQrCode;
 import com.example.attendance.Activity.LoginActivity;
+import com.example.attendance.FragmentDialoge;
 import com.example.attendance.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,7 +77,7 @@ public class AdminActivity extends AppCompatActivity {
         tvGenerateQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), WeeksActivity.class));
+              openDiloge();
             }
         });
         imAdminDetails.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +88,12 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void openDiloge(){
+        FragmentDialoge fragmentDialoge=new FragmentDialoge();
+        fragmentDialoge.putRoomDetailsinWeeks(roomId,roomTitle);
+        fragmentDialoge.show(getSupportFragmentManager(),"Fragment Dialoge");
     }
 
     public void changeStatusBarColor() {

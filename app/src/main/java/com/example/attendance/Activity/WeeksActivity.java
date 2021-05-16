@@ -28,7 +28,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -62,7 +61,7 @@ private FloatingActionButton floatingActionButtonInWeeks;
         recyclerViewInWeeks.setAdapter(adapterForWeeks);
         databaseReferenceInWeeks.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+            public void onDataChange( DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
                     WeeksModel weeksModel=dataSnapshot.getValue(WeeksModel.class);
                     arrayListInWeeks.add(weeksModel);
@@ -71,7 +70,7 @@ private FloatingActionButton floatingActionButtonInWeeks;
             }
 
             @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
 
             }
         });
