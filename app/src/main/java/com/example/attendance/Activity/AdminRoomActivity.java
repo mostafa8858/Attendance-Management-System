@@ -52,6 +52,8 @@ public class AdminRoomActivity extends AppCompatActivity {
     private AdapterForRooms adapterForAdminRooms;
 
 
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
