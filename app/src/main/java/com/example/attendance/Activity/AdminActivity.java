@@ -76,7 +76,7 @@ public class AdminActivity extends AppCompatActivity {
         tvGenerateQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), GenerateQrCode.class));
+                startActivity(new Intent(getBaseContext(), WeeksActivity.class));
             }
         });
         imAdminDetails.setOnClickListener(new View.OnClickListener() {
