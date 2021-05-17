@@ -23,8 +23,6 @@ import android.widget.ImageView;
 
 import com.example.attendance.Adapter.AdapterForRooms;
 import com.example.attendance.Domin.Room;
-import com.example.attendance.Fragments.FragmentDialogForAddRoom;
-import com.example.attendance.Fragments.FragmentDialoge;
 import com.example.attendance.R;
 import com.example.attendance.Listener.RecyclerViewOnClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -127,19 +125,71 @@ public class AdminRoomActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        ivroom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, IMAGE_REQEST_CODE);
+            }
+        });
 
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this).setTitle("Create New Room")
+                .setIcon(R.drawable.ic_alert_blue_24).setView(dialogView);
         bnCreateRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDiloge();
+                alertDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String roomTitle = etRoomTitle.getText().toString();
+                        String adminName = firebaseUser.getDisplayName();
+                        String roomId = databaseReference.push().getKey();
+                        String adminUid = firebaseUser.getUid();
 
 
+                        Room room = new Room(roomTitle, imageUri, null, adminName, roomId);
+
+
+                        databaseReference = FirebaseDatabase.getInstance().getReference("Admin").child(adminUid).child(roomId);
+                        databaseReference.setValue(room);
+
+
+                        databaseReference = FirebaseDatabase.getInstance().getReference("Rooms").child(roomId);
+                        databaseReference.setValue(room);
+
+
+
+                    }
+                }).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                try {
+                    alertDialog.show();
+                } catch (Exception e) {
+                    System.out.println("aaaaaaaaaaaaaaaaa   " + e.getMessage());
+                }
 
             }
         });
 
 
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == IMAGE_REQEST_CODE && resultCode == RESULT_OK) {
+            imageUri = data.getData();
+            ivroom.setImageURI(imageUri);
+
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -158,13 +208,5 @@ public class AdminRoomActivity extends AppCompatActivity {
         });
         return true;
 
-    }
-
-
-
-
-    public void openDiloge(){
-        FragmentDialogForAddRoom fragmentDialogForAddRoom=new FragmentDialogForAddRoom();;
-        fragmentDialogForAddRoom.show(getSupportFragmentManager(),"Fragment Dialoge");
     }
 }

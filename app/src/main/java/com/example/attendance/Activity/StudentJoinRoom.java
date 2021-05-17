@@ -1,13 +1,22 @@
 package com.example.attendance.Activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attendance.Adapter.AdapterForRooms;
 import com.example.attendance.Domin.Room;
@@ -24,14 +33,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class StudentJoinRoom extends AppCompatActivity {
-    public static final String ROOM_TITLE = "roomTitle";
-    public static final String ROOM_ID = "roomId";
+
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     private ArrayList<Room> rooms;
     private AdapterForRooms adapterForAdminRooms;
+    private ViewGroup dialogView;
+    private ImageView ivRoomView;
+    private EditText etRooomAdmin;
+    private TextView tvRoomTitle, tvRoomId;
 
 
     @Override
@@ -44,25 +56,76 @@ public class StudentJoinRoom extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
 
-        recyclerView=findViewById(R.id.recycler_view_in_student_join_room);
+        recyclerView = findViewById(R.id.recycler_view_in_student_join_room);
+
+        dialogView = (ViewGroup) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_dialog_join_room, null, false);
+        ivRoomView = dialogView.findViewById(R.id.room_image_in_dialog_join_room);
+        etRooomAdmin = dialogView.findViewById(R.id.editTextRoomTitle_dialog_join_room);
+        tvRoomTitle = dialogView.findViewById(R.id.room_title_in_dialog_join_room);
+        tvRoomId = dialogView.findViewById(R.id.room_id_in_dialog_join_room);
 
 
-
-
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         rooms = new ArrayList<>();
         adapterForAdminRooms = new AdapterForRooms(rooms, new RecyclerViewOnClickListener() {
             @Override
             public void onClick(Room room) {
 
-                // اكتب هنا كود الديالوج يا ايهاب
+                String roomTitle = room.getRoomTitle();
+                String roomId = room.getId();
+                String roomAdminName = room.getAdmin();
+                Uri imageUri = room.getRoomImageUri();
 
 
+                tvRoomTitle.setText(roomTitle);
+                tvRoomId.setText(roomId);
+                ivRoomView.setImageURI(imageUri);
 
+
+                alertDialog.setTitle("Join To Room").setIcon(R.drawable.ic_alert_blue_24).setView(dialogView)
+                        .setPositiveButton("Join", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String answer = etRooomAdmin.getText().toString();
+
+                                if (answer.length() < 3) {
+
+                                    etRooomAdmin.setError("the name length less than 3");
+                                    etRooomAdmin.requestFocus();
+                                } else {
+
+
+                                    if (answer.equals(roomAdminName)) {
+                                        databaseReference = FirebaseDatabase.getInstance().getReference("Student").child(firebaseUser.getUid()).child(roomId);
+                                        Room room = new Room(roomTitle, imageUri, null, answer, roomId);
+                                        databaseReference.setValue(room);
+                                        Toast.makeText(getBaseContext(), "Join sucssfully", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "InCorrect", Toast.LENGTH_LONG).show();
+
+
+                                    }
+                                }
+
+                            }
+
+
+                        }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                try {
+                    alertDialog.show();
+                } catch (Exception e) {
+
+
+                }
 
 
             }
@@ -70,7 +133,6 @@ public class StudentJoinRoom extends AppCompatActivity {
         RecyclerView.LayoutManager manager = new GridLayoutManager(this, 2);
         recyclerView.setAdapter(adapterForAdminRooms);
         recyclerView.setLayoutManager(manager);
-
 
 
         databaseReference.getDatabase().getReference("Rooms").addValueEventListener(new ValueEventListener() {
@@ -93,12 +155,11 @@ public class StudentJoinRoom extends AppCompatActivity {
         });
 
 
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_in_rooms_activity,menu);
+        getMenuInflater().inflate(R.menu.menu_in_rooms_activity, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.search_in_rooms).getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -121,4 +182,6 @@ public class StudentJoinRoom extends AppCompatActivity {
 
 
     }
+
+
 }
