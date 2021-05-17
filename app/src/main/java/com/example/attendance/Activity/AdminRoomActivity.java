@@ -3,6 +3,7 @@ package com.example.attendance.Activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -157,6 +159,7 @@ public class AdminRoomActivity extends AppCompatActivity {
                         databaseReference.setValue(room);
 
 
+
                     }
                 }).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
                     @Override
@@ -185,5 +188,25 @@ public class AdminRoomActivity extends AppCompatActivity {
             ivroom.setImageURI(imageUri);
 
         }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_in_rooms_activity,menu);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search_in_rooms).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return true;
+            }
+        });
+        return true;
+
     }
 }

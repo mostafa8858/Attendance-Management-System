@@ -34,5 +34,16 @@
         </androidx.recyclerview.widget.RecyclerView>
     </androidx.core.widget.NestedScrollView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonJoinRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+
+        android:layout_margin="15dp"
+android:tint="@color/white"
+        app:backgroundTint="@color/red"
+        android:src="@drawable/ic_add_24" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -15,4 +15,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="out_line">#B3B1B1</color>
     <color name="main_bk_color">#F8F8F8</color>
+    <color name="red">#F44336</color>
 </resources>
