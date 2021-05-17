@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     private String email, password;
     private static final String TAG = "FacebookAuth";
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
