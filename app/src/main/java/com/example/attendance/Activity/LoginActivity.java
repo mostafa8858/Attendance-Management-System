@@ -41,8 +41,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Arrays;
 
 import butterknife.ButterKnife;
+import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
+Paper paper;
     private static final String EMAIL = "email";
 
     private LoginButton faceBookLogin;
