@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.attendance.Domin.Room;
 import com.example.attendance.R;
-import com.example.attendance.RecyclerViewOnClickListener;
+import com.example.attendance.Listener.RecyclerViewOnClickListener;
 
 import java.util.ArrayList;
 

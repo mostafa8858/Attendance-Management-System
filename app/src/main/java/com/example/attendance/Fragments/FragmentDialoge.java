@@ -1,4 +1,4 @@
-package com.example.attendance;
+package com.example.attendance.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import com.example.attendance.Activity.AdminActivity;
 import com.example.attendance.Activity.GenerateQrCode;
 import com.example.attendance.Domin.WeeksModel;
+import com.example.attendance.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

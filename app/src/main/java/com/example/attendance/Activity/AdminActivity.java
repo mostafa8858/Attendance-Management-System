@@ -2,10 +2,7 @@ package com.example.attendance.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.attendance.Activity.DetailsActivity;
-import com.example.attendance.Activity.GenerateQrCode;
-import com.example.attendance.Activity.LoginActivity;
-import com.example.attendance.FragmentDialoge;
+import com.example.attendance.Fragments.FragmentDialoge;
 import com.example.attendance.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
