@@ -173,7 +173,7 @@
                     app:cardMaxElevation="6dp">
 
                     <TextView
-
+                         android:id="@+id/week"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"

@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AdminActivity extends AppCompatActivity {
-    private TextView tvAdminLogOut, tvGenerateQrCode, tvAdminName,tvRoomTitle;
+    private TextView tvAdminLogOut, tvGenerateQrCode, tvAdminName,tvRoomTitle,week;
     private ImageView imAdminDetails;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
@@ -44,7 +44,7 @@ public class AdminActivity extends AppCompatActivity {
         tvAdminLogOut = findViewById(R.id.log_out);
         imAdminDetails = findViewById(R.id.admin_image);
         tvRoomTitle=findViewById(R.id.tv_room_title_admin);
-
+        week=findViewById(R.id.week);
         tvAdminName.setText(firebaseUser.getDisplayName());
 
 
@@ -61,7 +61,13 @@ public class AdminActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        week.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                openDiloge();
+            }
+        });
         tvAdminLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +83,8 @@ public class AdminActivity extends AppCompatActivity {
         tvGenerateQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              openDiloge();
+                startActivity(new Intent(getBaseContext(), GenerateQrCode.class));
+              //openDiloge();
             }
         });
         imAdminDetails.setOnClickListener(new View.OnClickListener() {
