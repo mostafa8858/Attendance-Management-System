@@ -6,16 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 
 import com.example.attendance.Adapter.AdapterForRooms;
 import com.example.attendance.Domin.Room;
 import com.example.attendance.R;
 import com.example.attendance.Listener.RecyclerViewOnClickListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class StudentRoomActivity extends AppCompatActivity {
+public class StudentJoinRoom extends AppCompatActivity {
     public static final String ROOM_TITLE = "roomTitle";
     public static final String ROOM_ID = "roomId";
     private Toolbar toolbar;
@@ -35,24 +32,26 @@ public class StudentRoomActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private ArrayList<Room> rooms;
     private AdapterForRooms adapterForAdminRooms;
-    private FloatingActionButton bnJoinRoom;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_room);
+        setContentView(R.layout.activity_student_join_room);
 
 
-        toolbar = findViewById(R.id.toolbar_in_student_room);
+        toolbar = findViewById(R.id.toolbar_in_student_join_room);
         setSupportActionBar(toolbar);
+
 
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
 
-        recyclerView = findViewById(R.id.recycler_view_in_student_room);
-        bnJoinRoom = findViewById(R.id.floatingActionButtonJoinRoom);
+        recyclerView=findViewById(R.id.recycler_view_in_student_join_room);
+
+
 
 
         rooms = new ArrayList<>();
@@ -60,14 +59,12 @@ public class StudentRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(Room room) {
 
-                String roomTitle, roomId;
-                roomTitle = room.getRoomTitle();
-                roomId = room.getId();
-                Intent intent = new Intent(getBaseContext(), StudentActivity.class);
-                intent.putExtra(ROOM_TITLE, roomTitle);
-                intent.putExtra(ROOM_ID, roomId);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+                // اكتب هنا كود الديالوج يا ايهاب
+
+
+
+
+
             }
         });
         RecyclerView.LayoutManager manager = new GridLayoutManager(this, 2);
@@ -75,8 +72,8 @@ public class StudentRoomActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(manager);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Student").child(firebaseUser.getUid());
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+        databaseReference.getDatabase().getReference("Rooms").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
@@ -96,11 +93,12 @@ public class StudentRoomActivity extends AppCompatActivity {
         });
 
 
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_in_rooms_activity, menu);
+        getMenuInflater().inflate(R.menu.menu_in_rooms_activity,menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.search_in_rooms).getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -120,18 +118,6 @@ public class StudentRoomActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
-        bnJoinRoom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(getBaseContext(), StudentJoinRoom.class));
-                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
-
-
-            }
-        });
 
 
     }

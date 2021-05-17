@@ -23,9 +23,14 @@ import android.widget.ImageView;
 
 import com.example.attendance.Adapter.AdapterForRooms;
 import com.example.attendance.Domin.Room;
+<<<<<<< HEAD
 import com.example.attendance.FragmentDialoge;
+=======
+import com.example.attendance.Fragments.FragmentDialogForAddRoom;
+import com.example.attendance.Fragments.FragmentDialoge;
+>>>>>>> f1e6724e50fa2b261bd78ca053b1b79fea5f72e6
 import com.example.attendance.R;
-import com.example.attendance.RecyclerViewOnClickListener;
+import com.example.attendance.Listener.RecyclerViewOnClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -74,7 +79,7 @@ public class AdminRoomActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_in_admin_room);
 
 
-        dialogView = (ViewGroup) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_dialog, null, false);
+        dialogView = (ViewGroup) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_dialog_add_room, null, false);
         ivroom = dialogView.findViewById(R.id.room_image);
         etRoomTitle = dialogView.findViewById(R.id.editTextRoomTitle);
 
@@ -126,6 +131,7 @@ public class AdminRoomActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+<<<<<<< HEAD
         ivroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,9 +156,13 @@ public class AdminRoomActivity extends AppCompatActivity {
         databaseReference.setValue(room);
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this).setTitle("Create New Room")
                 .setIcon(R.drawable.ic_alert_blue_24).setView(dialogView);
+=======
+
+>>>>>>> f1e6724e50fa2b261bd78ca053b1b79fea5f72e6
         bnCreateRoom.setOnClickListener(new View.OnClickListener() {
            @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                openDiloge();
                alertDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                    @Override
@@ -163,9 +173,13 @@ public class AdminRoomActivity extends AppCompatActivity {
                        String roomId = databaseReference.push().getKey();
                        String adminUid = firebaseUser.getUid();
 
+=======
+                openDiloge();
+>>>>>>> f1e6724e50fa2b261bd78ca053b1b79fea5f72e6
 
                        Room room = new Room(roomTitle, imageUri, null, adminName, roomId);
 
+<<<<<<< HEAD
 
                        databaseReference = FirebaseDatabase.getInstance().getReference("Admin").child(adminUid).child(roomId);
                        databaseReference.setValue(room);
@@ -188,12 +202,15 @@ public class AdminRoomActivity extends AppCompatActivity {
                    System.out.println("aaaaaaaaaaaaaaaaa   " + e.getMessage());
                }
            }
+=======
+>>>>>>> f1e6724e50fa2b261bd78ca053b1b79fea5f72e6
 
         });
 
 
     }
 
+<<<<<<< HEAD
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -209,6 +226,8 @@ public class AdminRoomActivity extends AppCompatActivity {
         FragmentDialoge fragmentDialoge=new FragmentDialoge();
         fragmentDialoge.show(getSupportFragmentManager(),"Fragment Dialoge");
     }
+=======
+>>>>>>> f1e6724e50fa2b261bd78ca053b1b79fea5f72e6
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_in_rooms_activity,menu);
@@ -226,5 +245,13 @@ public class AdminRoomActivity extends AppCompatActivity {
         });
         return true;
 
+    }
+
+
+
+
+    public void openDiloge(){
+        FragmentDialogForAddRoom fragmentDialogForAddRoom=new FragmentDialogForAddRoom();;
+        fragmentDialogForAddRoom.show(getSupportFragmentManager(),"Fragment Dialoge");
     }
 }

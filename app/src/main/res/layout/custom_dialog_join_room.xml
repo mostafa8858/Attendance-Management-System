@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/room_image_in_dialog_join_room"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_room_image" />
+
+    <TextView
+        android:id="@+id/room_title_in_dialog_join_room"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rubik_mono_one"
+        android:gravity="center"
+        android:textColor="@color/black"
+android:layout_marginBottom="5dp"
+        android:text="@string/roomTitle"
+        android:textSize="30dp" />
+    <TextView
+        android:id="@+id/room_id_in_dialog_join_room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADferrfr_efef69523"
+        android:gravity="center"
+        android:fontFamily="@font/baloo"
+        android:textColor="@color/out_line"
+        android:textSize="20dp"
+        />
+
+    <EditText
+        android:id="@+id/editTextRoomTitle_dialog_join_room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Room Admin"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:textSize="20sp" />
+
+
+</LinearLayout>
