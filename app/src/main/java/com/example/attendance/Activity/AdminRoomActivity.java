@@ -141,22 +141,6 @@ public class AdminRoomActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this).setTitle("Create New Room")
                 .setIcon(R.drawable.ic_alert_blue_24).setView(dialogView);
 
-        String roomTitle = etRoomTitle.getText().toString();
-        String adminName = firebaseUser.getDisplayName();
-        String roomId = databaseReference.push().getKey();
-        String adminUid = firebaseUser.getUid();
-
-
-        Room room = new Room(roomTitle, imageUri, null, adminName, roomId);
-
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Admin").child(adminUid).child(roomId);
-        databaseReference.setValue(room);
-
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Rooms").child(roomId);
-        databaseReference.setValue(room);
-
         bnCreateRoom.setOnClickListener(new View.OnClickListener() {
            @Override
             public void onClick(View v) {
