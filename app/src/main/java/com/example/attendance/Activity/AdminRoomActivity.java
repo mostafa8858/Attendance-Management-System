@@ -23,6 +23,7 @@ import android.widget.ImageView;
 
 import com.example.attendance.Adapter.AdapterForRooms;
 import com.example.attendance.Domin.Room;
+import com.example.attendance.FragmentDialoge;
 import com.example.attendance.R;
 import com.example.attendance.RecyclerViewOnClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -132,48 +133,62 @@ public class AdminRoomActivity extends AppCompatActivity {
                 startActivityForResult(intent, IMAGE_REQEST_CODE);
             }
         });
+        String roomTitle = etRoomTitle.getText().toString();
+        String adminName = firebaseUser.getDisplayName();
+        String roomId = databaseReference.push().getKey();
+        String adminUid = firebaseUser.getUid();
 
+
+        Room room = new Room(roomTitle, imageUri, null, adminName, roomId);
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Admin").child(adminUid).child(roomId);
+        databaseReference.setValue(room);
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Rooms").child(roomId);
+        databaseReference.setValue(room);
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this).setTitle("Create New Room")
                 .setIcon(R.drawable.ic_alert_blue_24).setView(dialogView);
         bnCreateRoom.setOnClickListener(new View.OnClickListener() {
-            @Override
+           @Override
             public void onClick(View v) {
-                alertDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+               openDiloge();
+               alertDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
 
-                        String roomTitle = etRoomTitle.getText().toString();
-                        String adminName = firebaseUser.getDisplayName();
-                        String roomId = databaseReference.push().getKey();
-                        String adminUid = firebaseUser.getUid();
-
-
-                        Room room = new Room(roomTitle, imageUri, null, adminName, roomId);
+                       String roomTitle = etRoomTitle.getText().toString();
+                       String adminName = firebaseUser.getDisplayName();
+                       String roomId = databaseReference.push().getKey();
+                       String adminUid = firebaseUser.getUid();
 
 
-                        databaseReference = FirebaseDatabase.getInstance().getReference("Admin").child(adminUid).child(roomId);
-                        databaseReference.setValue(room);
+                       Room room = new Room(roomTitle, imageUri, null, adminName, roomId);
 
 
-                        databaseReference = FirebaseDatabase.getInstance().getReference("Rooms").child(roomId);
-                        databaseReference.setValue(room);
+                       databaseReference = FirebaseDatabase.getInstance().getReference("Admin").child(adminUid).child(roomId);
+                       databaseReference.setValue(room);
 
 
+                       databaseReference = FirebaseDatabase.getInstance().getReference("Rooms").child(roomId);
+                       databaseReference.setValue(room);
 
-                    }
-                }).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
-                try {
-                    alertDialog.show();
-                } catch (Exception e) {
-                    System.out.println("aaaaaaaaaaaaaaaaa   " + e.getMessage());
-                }
+                   }
+               }).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
 
-            }
+                   }
+               });
+               try {
+                   alertDialog.show();
+               } catch (Exception e) {
+                   System.out.println("aaaaaaaaaaaaaaaaa   " + e.getMessage());
+               }
+           }
+
         });
 
 
@@ -190,7 +205,10 @@ public class AdminRoomActivity extends AppCompatActivity {
         }
     }
 
-
+    public void openDiloge(){
+        FragmentDialoge fragmentDialoge=new FragmentDialoge();
+        fragmentDialoge.show(getSupportFragmentManager(),"Fragment Dialoge");
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_in_rooms_activity,menu);
