@@ -70,16 +70,28 @@
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember me "
+        android:textColor="@color/colorAccent"
+        android:id="@+id/checkboxLogin"
+        android:layout_marginTop="10dp"
+        />
             <TextView
+
+                android:layout_marginStart="120dp"
                 android:id="@+id/textView_forgetPassword"
                 style="@style/viewParent"
-                android:layout_gravity="end"
                 android:layout_marginTop="10dp"
                 android:text="Forgot password?"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/newsMoreTextSize" />
-
+</LinearLayout>
             <Button
                 android:id="@+id/loginbutton"
                 style="@style/loginButton"
