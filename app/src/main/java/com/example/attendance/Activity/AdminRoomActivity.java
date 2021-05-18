@@ -177,9 +177,12 @@ public class AdminRoomActivity extends AppCompatActivity {
                    Toast.makeText(AdminRoomActivity.this, "done ", Toast.LENGTH_SHORT).show();
                    alertDialog.show();
 
+<<<<<<< HEAD
                    alertDialog.setCancelable(true);
 
 
+=======
+>>>>>>> parent of 5876f10 (afd)
                }catch(Exception e){
 
                    System.out.println("aaaaaaaaaaa    "+e.getMessage());
