@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.attendance.Activity.DetailsActivity;
+import com.example.attendance.Activity.LoginActivity;
+import com.example.attendance.Activity.ScannerStudant;
 import com.example.attendance.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,7 +55,7 @@ public class StudentActivity extends AppCompatActivity {
          tvScanQr.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 startActivity(new Intent(getBaseContext(), ScannerStudentActivity.class));
+                 startActivity(new Intent(getBaseContext(), ScannerStudant.class));
              }
          });
 

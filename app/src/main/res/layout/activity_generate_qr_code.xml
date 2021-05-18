@@ -4,25 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.GenerateQrCodeActivity">
+    tools:context=".Activity.GenerateQrCode">
 
+    <EditText
+        android:id="@+id/edit_text_genrate_qrcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/generate_QR_value" />
 
+    <Button
+        android:id="@+id/button_generate_code"
+        android:background="@drawable/button_background_blue"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_text_genrate_qrcode"
+        android:layout_margin="15dp"
 
+        android:text="@string/generate_QR_code_admin" />
+
+    <Button
+        android:id="@+id/button_auto_generate_code"
+        android:background="@drawable/button_background_blue"
+       android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_generate_code"
+        android:layout_margin="15dp"
+        android:text="@string/auto_generate_QR_code" />
 
     <ImageView
         android:id="@+id/imageView_qr_genrate"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_qr_code_scan" />
-    <TextView
-        android:id="@+id/text_in_generatecode_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/roomTitle"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:fontFamily="@font/baloo"
-        />
+        android:layout_below="@+id/button_auto_generate_code"
 
+   android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_qr_code_scan" />
 
 </RelativeLayout>
