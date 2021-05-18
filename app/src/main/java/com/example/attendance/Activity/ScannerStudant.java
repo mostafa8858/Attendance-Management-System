@@ -37,6 +37,7 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
         scannerView=new ZXingScannerView(this);
         setContentView(scannerView);
 
+
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA)
@@ -67,18 +68,16 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
          data = rawResult.getText().toString();
 
 
-
-
-
         databaseReference.push().setValue(data)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 
-
                         databaseReference =FirebaseDatabase.getInstance().getReference("Weeks");
 
                         Toast.makeText(ScannerStudant.this, "Done", Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(ScannerStudant.this, "Done", Toast.LENGTH_SHORT).show();
 
                         onBackPressed();
                     }
@@ -100,6 +99,7 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
    private ArrayList<String> segmentData(String data){
        return null;
    }
+
 
 
 

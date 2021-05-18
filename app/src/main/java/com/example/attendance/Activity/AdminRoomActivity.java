@@ -178,6 +178,7 @@ public class AdminRoomActivity extends AppCompatActivity {
                    alertDialog.show();
 
 
+
                    alertDialog.setCancelable(true);
 
                }catch(Exception e){
