@@ -23,27 +23,23 @@ import java.util.ArrayList;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-<<<<<<< HEAD:app/src/main/java/com/example/attendance/Activity/ScannerStudant.java
+
 public class ScannerStudant extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView scannerView;
     private DatabaseReference databaseReference;
     private String data;
 
-=======
-public class ScannerStudant extends AppCompatActivity implements ZXingScannerView.ResultHandler{
-            ZXingScannerView scannerView;
-    DatabaseReference databaseReference;
->>>>>>> parent of 5876f10 (afd):app/src/main/java/com/example/attendance/Activity/ScannerStudentActivity.java
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scannerView=new ZXingScannerView(this);
         setContentView(scannerView);
-<<<<<<< HEAD:app/src/main/java/com/example/attendance/Activity/ScannerStudant.java
+
         databaseReference = FirebaseDatabase.getInstance().getReference();
-=======
+
         databaseReference= FirebaseDatabase.getInstance().getReference("ehab");
->>>>>>> parent of 5876f10 (afd):app/src/main/java/com/example/attendance/Activity/ScannerStudentActivity.java
+
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA)
                 .withListener(new PermissionListener() {
                     @Override
@@ -67,21 +63,21 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
 
     @Override
     public void handleResult(Result rawResult) {
-<<<<<<< HEAD:app/src/main/java/com/example/attendance/Activity/ScannerStudant.java
+
          data = rawResult.getText().toString();
 
-=======
+
         String data =rawResult.getText().toString();
->>>>>>> parent of 5876f10 (afd):app/src/main/java/com/example/attendance/Activity/ScannerStudentActivity.java
+
         databaseReference.push().setValue(data)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-<<<<<<< HEAD:app/src/main/java/com/example/attendance/Activity/ScannerStudant.java
+
                         databaseReference =FirebaseDatabase.getInstance().getReference("Weeks");
-=======
+
                         Toast.makeText(ScannerStudant.this, "Done", Toast.LENGTH_SHORT).show();
->>>>>>> parent of 5876f10 (afd):app/src/main/java/com/example/attendance/Activity/ScannerStudentActivity.java
+
                         onBackPressed();
                     }
                 });
