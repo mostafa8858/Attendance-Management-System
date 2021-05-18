@@ -166,10 +166,16 @@ public class AdminRoomActivity extends AppCompatActivity {
 
 
 
+
+
+
                    }
                }).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
+
+
+
 
                    }
                });
@@ -177,6 +183,7 @@ public class AdminRoomActivity extends AppCompatActivity {
                    Toast.makeText(AdminRoomActivity.this, "done ", Toast.LENGTH_SHORT).show();
                    alertDialog.show();
                    alertDialog.setCancelable(true);
+
 
                }catch(Exception e){
 
