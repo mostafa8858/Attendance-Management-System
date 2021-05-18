@@ -19,17 +19,21 @@ import android.Manifest;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class ScannerStudant extends AppCompatActivity implements ZXingScannerView.ResultHandler{
-            ZXingScannerView scannerView;
-    DatabaseReference databaseReference;
+public class ScannerStudant extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+    private ZXingScannerView scannerView;
+    private DatabaseReference databaseReference;
+    private String data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        scannerView=new ZXingScannerView(this);
+        scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
-        databaseReference= FirebaseDatabase.getInstance().getReference("ehab");
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA)
                 .withListener(new PermissionListener() {
                     @Override
@@ -53,12 +57,13 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
 
     @Override
     public void handleResult(Result rawResult) {
-        String data =rawResult.getText().toString();
+         data = rawResult.getText().toString();
+
         databaseReference.push().setValue(data)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(ScannerStudant.this, "Done", Toast.LENGTH_SHORT).show();
+                        databaseReference =FirebaseDatabase.getInstance().getReference("Weeks");
                         onBackPressed();
                     }
                 });
@@ -76,7 +81,8 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
         scannerView.setResultHandler(this);
         scannerView.startCamera();
     }
-
-
+   private ArrayList<String> segmentData(String data){
+       return null;
+   }
 
 }
