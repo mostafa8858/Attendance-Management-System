@@ -178,8 +178,13 @@ public class AdminRoomActivity extends AppCompatActivity {
                    alertDialog.show();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                    alertDialog.setCancelable(true);
+=======
 
+>>>>>>> 571b0467c8745ca1c36112dd35f3170d5cba1c25
+
+                   alertDialog.setCancelable(true);
 
 =======
 >>>>>>> parent of 5876f10 (afd)

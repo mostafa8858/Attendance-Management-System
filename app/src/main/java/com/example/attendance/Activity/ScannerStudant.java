@@ -24,6 +24,10 @@ import java.util.ArrayList;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 <<<<<<< HEAD:app/src/main/java/com/example/attendance/Activity/ScannerStudant.java
+<<<<<<< HEAD
+=======
+
+>>>>>>> 571b0467c8745ca1c36112dd35f3170d5cba1c25
 
 public class ScannerStudant extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView scannerView;
@@ -42,13 +46,21 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
         scannerView=new ZXingScannerView(this);
         setContentView(scannerView);
 <<<<<<< HEAD:app/src/main/java/com/example/attendance/Activity/ScannerStudant.java
+<<<<<<< HEAD
+=======
+
+>>>>>>> 571b0467c8745ca1c36112dd35f3170d5cba1c25
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
+=======
         databaseReference= FirebaseDatabase.getInstance().getReference("ehab");
+<<<<<<< HEAD
 
 =======
         databaseReference= FirebaseDatabase.getInstance().getReference("ehab");
+=======
+>>>>>>> 571b0467c8745ca1c36112dd35f3170d5cba1c25
 >>>>>>> parent of 5876f10 (afd):app/src/main/java/com/example/attendance/Activity/ScannerStudentActivity.java
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA)
                 .withListener(new PermissionListener() {
@@ -74,14 +86,22 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
     @Override
     public void handleResult(Result rawResult) {
 <<<<<<< HEAD:app/src/main/java/com/example/attendance/Activity/ScannerStudant.java
+<<<<<<< HEAD
+=======
+
+>>>>>>> 571b0467c8745ca1c36112dd35f3170d5cba1c25
 
          data = rawResult.getText().toString();
 
 
+=======
         String data =rawResult.getText().toString();
+<<<<<<< HEAD
 
 =======
         String data =rawResult.getText().toString();
+=======
+>>>>>>> 571b0467c8745ca1c36112dd35f3170d5cba1c25
 >>>>>>> parent of 5876f10 (afd):app/src/main/java/com/example/attendance/Activity/ScannerStudentActivity.java
         databaseReference.push().setValue(data)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -93,6 +113,11 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
 
                         Toast.makeText(ScannerStudant.this, "Done", Toast.LENGTH_SHORT).show();
 
+<<<<<<< HEAD
+=======
+        Toast.makeText(ScannerStudant.this, "Done", Toast.LENGTH_SHORT).show();
+
+>>>>>>> 571b0467c8745ca1c36112dd35f3170d5cba1c25
 =======
                         Toast.makeText(ScannerStudant.this, "Done", Toast.LENGTH_SHORT).show();
 >>>>>>> parent of 5876f10 (afd):app/src/main/java/com/example/attendance/Activity/ScannerStudentActivity.java
@@ -119,4 +144,9 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 571b0467c8745ca1c36112dd35f3170d5cba1c25
 }
