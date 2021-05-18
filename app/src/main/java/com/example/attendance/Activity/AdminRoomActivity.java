@@ -177,9 +177,9 @@ public class AdminRoomActivity extends AppCompatActivity {
                    Toast.makeText(AdminRoomActivity.this, "done ", Toast.LENGTH_SHORT).show();
                    alertDialog.show();
 
+
                    alertDialog.setCancelable(true);
-
-
+                   
                }catch(Exception e){
 
                    System.out.println("aaaaaaaaaaa    "+e.getMessage());

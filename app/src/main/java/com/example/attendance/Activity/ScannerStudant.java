@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
+
 public class ScannerStudant extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView scannerView;
     private DatabaseReference databaseReference;
@@ -37,8 +38,6 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
         setContentView(scannerView);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-
-        databaseReference= FirebaseDatabase.getInstance().getReference("ehab");
 
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA)
                 .withListener(new PermissionListener() {
@@ -64,15 +63,18 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
     @Override
     public void handleResult(Result rawResult) {
 
+
          data = rawResult.getText().toString();
 
 
-        String data =rawResult.getText().toString();
+
+
 
         databaseReference.push().setValue(data)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+
 
                         databaseReference =FirebaseDatabase.getInstance().getReference("Weeks");
 
@@ -98,6 +100,7 @@ public class ScannerStudant extends AppCompatActivity implements ZXingScannerVie
    private ArrayList<String> segmentData(String data){
        return null;
    }
+
 
 
 }
