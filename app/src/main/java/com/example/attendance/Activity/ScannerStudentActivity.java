@@ -24,15 +24,13 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class ScannerStudentActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView scannerView;
     private DatabaseReference databaseReference;
-    private String data;
-
+private String data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference("ehab");
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA)
                 .withListener(new PermissionListener() {
                     @Override
@@ -56,7 +54,7 @@ public class ScannerStudentActivity extends AppCompatActivity implements ZXingSc
 
     @Override
     public void handleResult(Result rawResult) {
-        data = rawResult.getText().toString();
+         data = rawResult.getText().toString();
         databaseReference.push().setValue(data)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
