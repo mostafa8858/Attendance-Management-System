@@ -21,16 +21,15 @@ import android.widget.Toast;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class ScannerStudentActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
-    private ZXingScannerView scannerView;
-    private DatabaseReference databaseReference;
-private String data;
+public class ScannerStudant extends AppCompatActivity implements ZXingScannerView.ResultHandler{
+            ZXingScannerView scannerView;
+    DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        scannerView = new ZXingScannerView(this);
+        scannerView=new ZXingScannerView(this);
         setContentView(scannerView);
-        databaseReference = FirebaseDatabase.getInstance().getReference("ehab");
+        databaseReference= FirebaseDatabase.getInstance().getReference("ehab");
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA)
                 .withListener(new PermissionListener() {
                     @Override
@@ -54,12 +53,12 @@ private String data;
 
     @Override
     public void handleResult(Result rawResult) {
-         data = rawResult.getText().toString();
+        String data =rawResult.getText().toString();
         databaseReference.push().setValue(data)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(ScannerStudentActivity.this, "Done", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ScannerStudant.this, "Done", Toast.LENGTH_SHORT).show();
                         onBackPressed();
                     }
                 });
@@ -77,6 +76,7 @@ private String data;
         scannerView.setResultHandler(this);
         scannerView.startCamera();
     }
+
 
 
 }

@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.attendance.Domin.Week;
-import com.example.attendance.Listener.RecyclerViewOnClickListenerForWeek;
+import com.example.attendance.Domin.Room;
+import com.example.attendance.Domin.WeeksModel;
 import com.example.attendance.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -18,18 +18,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public class AdapterForWeeks extends RecyclerView.Adapter<AdapterForWeeks.ClassHolder> {
-    private ArrayList<Week> weeks;
-    private RecyclerViewOnClickListenerForWeek recyclerViewOnClickListenerForWeek;
+    private ArrayList<WeeksModel> week;
 
-    public AdapterForWeeks(ArrayList<Week> weeks, RecyclerViewOnClickListenerForWeek recyclerViewOnClickListenerForWeek) {
-        this.weeks = weeks;
-        this.recyclerViewOnClickListenerForWeek = recyclerViewOnClickListenerForWeek;
-    }
-
-
-    public void updateData(ArrayList<Week> weeks) {
-        this.weeks.clear();
-        this.weeks = weeks;
+    public AdapterForWeeks(ArrayList<WeeksModel> week) {
+        this.week = week;
     }
 
     @NonNull
@@ -37,42 +29,31 @@ public class AdapterForWeeks extends RecyclerView.Adapter<AdapterForWeeks.ClassH
     @Override
 
     public ClassHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.customweeksforadpter, null, false);
-        ClassHolder classHolder = new ClassHolder(view);
-        return classHolder;
+      View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.customweeksforadpter,null,false);
+      ClassHolder classHolder=new ClassHolder(view);
+      return classHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull AdapterForWeeks.ClassHolder holder, int position) {
-        Week week = this.weeks.get(position);
-        holder.textViewWeeksAdapter.setText(week.getWeekName());
-        holder.week = weeks.get(position);
+              WeeksModel weeksModel=week.get(position);
+              holder.textViewWeeksAdapter.setText(weeksModel.getWeekNumber());
+
+
     }
 
     @Override
     public int getItemCount() {
-        return weeks.size();
+        return week.size();
     }
 
-    public class ClassHolder extends RecyclerView.ViewHolder {
+    public class  ClassHolder extends RecyclerView.ViewHolder{
         ImageView imageViewWeeksAdapter;
         TextView textViewWeeksAdapter;
-        Week week;
-
         public ClassHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            imageViewWeeksAdapter = itemView.findViewById(R.id.image_in_adatpterweeks);
-            textViewWeeksAdapter = itemView.findViewById(R.id.text_in_custom_room);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    recyclerViewOnClickListenerForWeek.onClick(week);
-                }
-            });
-
+            imageViewWeeksAdapter=itemView.findViewById(R.id.image_in_adatpterweeks);
+            textViewWeeksAdapter=itemView.findViewById(R.id.text_in_custom_room);
         }
     }
 }

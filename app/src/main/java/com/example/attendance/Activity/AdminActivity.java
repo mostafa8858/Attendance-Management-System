@@ -2,6 +2,7 @@ package com.example.attendance.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.attendance.Fragments.FragmentDialoge;
 import com.example.attendance.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,11 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.example.attendance.Activity.AdminRoomActivity.ROOM_ID;
-import static com.example.attendance.Activity.AdminRoomActivity.ROOM_TITLE;
-
 public class AdminActivity extends AppCompatActivity {
-    private TextView tvAdminLogOut, tvAdminName, tvRoomTitle, tvweek, tvAttendance;
+    private TextView tvAdminLogOut, tvGenerateQrCode, tvAdminName,tvRoomTitle,week;
     private ImageView imAdminDetails;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
@@ -39,18 +37,17 @@ public class AdminActivity extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
 
         tvAdminName = findViewById(R.id.admin_name);
+        tvGenerateQrCode = findViewById(R.id.generate_QR_code_in_admin);
         tvAdminLogOut = findViewById(R.id.log_out);
         imAdminDetails = findViewById(R.id.admin_image);
-        tvRoomTitle = findViewById(R.id.tv_room_title_admin);
-        tvweek = findViewById(R.id.text_view_week);
-        tvAttendance = findViewById(R.id.text_attendence_in_admin);
-
+        tvRoomTitle=findViewById(R.id.tv_room_title_admin);
+        week=findViewById(R.id.week);
         tvAdminName.setText(firebaseUser.getDisplayName());
 
 
         data = getIntent();
-        roomId = data.getStringExtra(ROOM_ID);
-        roomTitle = data.getStringExtra(ROOM_TITLE);
+        roomId=data.getStringExtra(AdminRoomActivity.ROOM_ID);
+        roomTitle=data.getStringExtra(AdminRoomActivity.ROOM_TITLE);
 
 
         tvRoomTitle.setText(roomTitle);
@@ -61,27 +58,11 @@ public class AdminActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
-        tvAttendance.setOnClickListener(new View.OnClickListener() {
+        week.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(getBaseContext(), AttendanceListActivity.class);
-                intent.putExtra(ROOM_ID,roomId);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
-
-            }
-        });
-
-        tvweek.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), WeeksActivity.class);
-                intent.putExtra(ROOM_TITLE, roomTitle);
-                intent.putExtra(ROOM_ID, roomId);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
-                startActivity(intent);
+                openDiloge();
             }
         });
         tvAdminLogOut.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +77,13 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
-
+        tvGenerateQrCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), GenerateQrCode.class));
+              //openDiloge();
+            }
+        });
         imAdminDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +94,11 @@ public class AdminActivity extends AppCompatActivity {
 
     }
 
+    public void openDiloge(){
+        FragmentDialoge fragmentDialoge=new FragmentDialoge();
+        fragmentDialoge.putRoomDetailsinWeeks(roomId,roomTitle);
+        fragmentDialoge.show(getSupportFragmentManager(),"Fragment Dialoge");
+    }
 
     public void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
