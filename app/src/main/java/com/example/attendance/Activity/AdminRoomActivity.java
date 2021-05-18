@@ -169,16 +169,23 @@ public class AdminRoomActivity extends AppCompatActivity {
 
 
 
+
+
+
                    }
                }).setNegativeButton("Deny", new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
+
+
+
 
                    }
                });
                try{
 
                    alertDialog.show();
+
 
                }catch(Exception e){
 
