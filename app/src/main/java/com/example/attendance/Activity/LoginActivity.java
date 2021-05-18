@@ -1,6 +1,7 @@
 package com.example.attendance.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -29,6 +32,7 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.api.Backend;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -44,9 +48,9 @@ import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
-Paper paper;
+   Paper paper;
     private static final String EMAIL = "email";
-
+    private CheckBox checkBox;
     private LoginButton faceBookLogin;
     private ImageView registerImage;
     private TextView tvRegister, tvForgetPassword;
@@ -67,59 +71,12 @@ Paper paper;
         ButterKnife.bind(this);
         changeStatusBarColor();
 
-     /*  // adminSignIn=findViewById(R.id.adminSignIn);
-        //userSingIn=findViewById(R.id.userSingIn);
-        //TxtforgetPassword=findViewById(R.id.textView_forgetPassword);
-        //TxtforgetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), MainScreenForGetPassword.class));
-            }
-        });
-        adminSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginButton.setText("Login Admin ");
-                adminSignIn.setVisibility(v.INVISIBLE);
-                userSingIn.setVisibility(v.VISIBLE);
-                Prevalent.DATA_BASE_NAME_ADMINS="Admins";
-            }
-        });
-        userSingIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginButton.setText("Login ");
-                adminSignIn.setVisibility(v.VISIBLE);
-                userSingIn.setVisibility(v.INVISIBLE);
-                Prevalent.DATA_BASE_NAME_User="Users";
-            }
-        });*/
-
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
-
+        checkBox=findViewById(R.id.checkboxLogin);
 
         FacebookSdk.sdkInitialize(LoginActivity.this);
         mCallbackManager = CallbackManager.Factory.create();
-
-//        adminSignIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                loginButton.setText("Login Admin ");
-//                adminSignIn.setVisibility(v.INVISIBLE);
-//                userSingIn.setVisibility(v.VISIBLE);
-//                Prevalent.DATA_BASE_NAME_User="Users";
-//            }
-//        });
-//        userSingIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                loginButton.setText("Login ");
-//                adminSignIn.setVisibility(v.VISIBLE);
-//                userSingIn.setVisibility(v.INVISIBLE);
-//                Prevalent.DATA_BASE_NAME_User="Users";
-//            }
-//        });
         faceBookLogin = findViewById(R.id.login_button_facebook);
         registerImage = findViewById(R.id.plus_image_in_login);
         tvRegister = findViewById(R.id.tv_register_in_login);
@@ -129,7 +86,7 @@ Paper paper;
         progressBar = findViewById(R.id.progressBar_login);
         tvForgetPassword = findViewById(R.id.textView_forgetPassword);
 
-        firebaseAuth.signOut();
+     //   firebaseAuth.signOut();
 
     }
 
@@ -159,6 +116,7 @@ Paper paper;
 //                userLoginRealTime();
 
             }
+
         });
         registerImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -317,98 +275,6 @@ Paper paper;
 
     }
 
-//    private void userLoginRealTime() {
-//        String email, password;
-//        email = edEmail.getText().toString();
-//        password = edPassword.getText().toString();
-//
-//        //check Name
-//        if (email.isEmpty()) {
-//            edEmail.setError("Email is required");
-//            edEmail.requestFocus();
-//        }
-//        //check password
-//        else if (password.isEmpty()) {
-//            edPassword.setError("password is required");
-//            edPassword.requestFocus();
-//        }
-//
-//
-//        //Done
-//        else {
-//            progressBar.setVisibility(View.VISIBLE);
-//            AllowAccessToAcountUser(email, password);
-//            AllowAccessToAcountAdmin(email,password);
-//        }
-//
-//
-//    }
-//   private void AllowAccessToAcountUser(String email, String  password){
-//       final DatabaseReference myRootRef;
-//       myRootRef = FirebaseDatabase.getInstance().getReference();
-//       myRootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//           @Override
-//           public void onDataChange(@NonNull DataSnapshot snapshot) {
-//               if (snapshot.child(Prevalent.DATA_BASE_NAME_User).child(email).exists()) {
-//                   User_model users_model = snapshot.child(Prevalent.DATA_BASE_NAME_User).child(email).getValue(User_model.class);
-//                   if (users_model.getEmailSinUp().equals(email)) {
-//                       if (users_model.getPassword().equals(password)) {
-//
-//                           Intent intent = new Intent(getBaseContext(), StudentActivity.class);
-//                           startActivity(intent);
-//
-//                           Toast.makeText(LoginActivity.this, "Done Login ", Toast.LENGTH_SHORT).show();
-//                       } else {
-//
-//                           Toast.makeText(LoginActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
-//                       }
-//                   } else {
-//                       Toast.makeText(LoginActivity.this, "this account with this email " + email + " not exist", Toast.LENGTH_SHORT).show();
-//
-//                   }
-//               }
-//           }
-//
-//           @Override
-//           public void onCancelled(@NonNull DatabaseError error) {
-//
-//           }
-//       });
-//   }
-//    private void AllowAccessToAcountAdmin(String email, String  password){
-//       final DatabaseReference myRootRef;
-//       myRootRef = FirebaseDatabase.getInstance().getReference();
-//       myRootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//           @Override
-//           public void onDataChange(@NonNull DataSnapshot snapshot) {
-//               if (snapshot.child(Prevalent.DATA_BASE_NAME_ADMINS).child(email).exists()) {
-//                   User_model users_model = snapshot.child(Prevalent.DATA_BASE_NAME_ADMINS).child(email).getValue(User_model.class);
-//                   if (users_model.getEmailSinUp().equals(email)) {
-//                       if (users_model.getPassword().equals(password)) {
-//
-//                           Intent intent = new Intent(getBaseContext(), AdminActivity.class);
-//                           startActivity(intent);
-//
-//                           Toast.makeText(LoginActivity.this, "Done Login ", Toast.LENGTH_SHORT).show();
-//                       } else {
-//
-//                           Toast.makeText(LoginActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
-//                       }
-//                   } else {
-//                       Toast.makeText(LoginActivity.this, "this account with this email " + email + " not exist", Toast.LENGTH_SHORT).show();
-//
-//                   }
-//               }
-//           }
-//
-//           @Override
-//           public void onCancelled(@NonNull DatabaseError error) {
-//
-//           }
-//       });
-//
-//
-//}
 
     public void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

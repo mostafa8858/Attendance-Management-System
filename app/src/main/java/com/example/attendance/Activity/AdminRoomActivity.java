@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.example.attendance.Adapter.AdapterForRooms;
@@ -139,7 +140,7 @@ public class AdminRoomActivity extends AppCompatActivity {
 
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this).setTitle("Create New Room")
-                .setIcon(R.drawable.ic_alert_blue_24).setView(dialogView);
+                .setIcon(R.drawable.ic_alert_blue_24).setView(R.layout.custom_dialog_add_room);
 
         bnCreateRoom.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -152,10 +153,6 @@ public class AdminRoomActivity extends AppCompatActivity {
                        String adminName = firebaseUser.getDisplayName();
                        String roomId = databaseReference.push().getKey();
                        String adminUid = firebaseUser.getUid();
-
-
-
-
 
                        Room room = new Room(roomTitle, imageUri, null, adminName, roomId);
 
@@ -183,18 +180,19 @@ public class AdminRoomActivity extends AppCompatActivity {
                    }
                });
                try{
-
+                   Toast.makeText(AdminRoomActivity.this, "done ", Toast.LENGTH_SHORT).show();
                    alertDialog.show();
+                   alertDialog.setCancelable(true);
 
 
                }catch(Exception e){
 
                    System.out.println("aaaaaaaaaaa    "+e.getMessage());
                }
-
-
+               alertDialog.setCancelable(true);
 
            }
+
 
 
         });
